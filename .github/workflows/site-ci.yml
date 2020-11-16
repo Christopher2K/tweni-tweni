@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
@@ -21,3 +20,9 @@ jobs:
         run: yarn preflight
       - name: Build code
         run: yarn build
+  deploy:
+     needs: build
+     runs-on: ubuntu-latest
+     steps:
+       - name: Netlify Deploy
+         run: curl -X POST -d {} https://api.netlify.com/build_hooks/5fb2762e92ce9abf07df85c1
