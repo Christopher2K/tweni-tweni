@@ -1,12 +1,13 @@
 import { css } from '@emotion/react'
 
+import { theme } from './theme'
 import { reset } from './reset'
 
 export const global = css`
   ${reset}
 
   :root {
-    font-size: 10px;
+    font-size: ${theme.rootFontSize};
   }
 
   #root {

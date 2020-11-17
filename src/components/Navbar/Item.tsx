@@ -6,15 +6,19 @@ const Root = styled.div<{ anchor: 'left' | 'right' }>`
   display: block;
   width: 100%;
   box-sizing: border-box;
-  font-size: ${props => props.theme.nav.itemFontSize};
+  font-size: ${props => props.theme.nav.itemSize};
   text-align: ${props => props.anchor};
+  height: ${props => props.theme.nav.itemSize};
+  flex: 1;
 `
 
 const StyledLink = styled(NavLink)`
+  display: inline-block;
   font-size: 1em;
   font-weight: 400;
   color: ${props => props.theme.color.black};
   text-decoration: none;
+  height: ${props => props.theme.nav.itemSize};
 
   &.active {
     text-decoration: underline;

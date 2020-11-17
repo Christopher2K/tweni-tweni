@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
-import { Navbar } from 'components/Navbar'
+import { Layout } from 'components/Layout'
 import { Contact } from 'pages/Contact'
 import { Genesis } from 'pages/Genesis'
 import { Home } from 'pages/Home'
@@ -13,8 +13,9 @@ import { Project } from 'pages/Project'
 
 export const Router: FC = () => (
   <BrowserRouter>
-    <Navbar />
-    <Links />
+    <Layout>
+      <Links />
+    </Layout>
   </BrowserRouter>
 )
 
