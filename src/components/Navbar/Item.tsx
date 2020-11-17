@@ -16,7 +16,7 @@ const StyledLink = styled(NavLink)`
   display: inline-block;
   font-size: 1em;
   font-weight: 400;
-  color: ${props => props.theme.color.black};
+  color: ${props => props.theme.colors.black};
   text-decoration: none;
   height: ${props => props.theme.nav.itemSize};
 
