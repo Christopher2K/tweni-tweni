@@ -26,14 +26,14 @@ export function useMediaQuery(mediaQuery: string): UseMediaQuery {
     if (mq.addEventListener !== undefined) {
       mq.addEventListener('change', updateMatch)
     } else {
-      mq.onchange = updateMatch
+      mq.addListener(updateMatch)
     }
 
     return () => {
       if (mq.removeEventListener !== undefined) {
         mq.removeEventListener('change', updateMatch)
       } else {
-        mq.onchange = null
+        mq.removeListener(updateMatch)
       }
     }
   }, [match, mediaQuery])
