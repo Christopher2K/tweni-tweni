@@ -3,13 +3,22 @@ import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
 
 import { ReactComponent as RawLogo } from 'assets/images/logo.svg'
+import { desktopStyle } from 'styles/responsive'
 
 const Logo = styled(RawLogo)`
   position: absolute;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: ${props => props.theme.nav.desktopLogoInactiveWidth};
+
+  top: calc(
+    ${props =>
+      `${props.theme.nav.padding.top.mobile} + (${props.theme.nav.itemSize.mobile}/ 2)`}
+  );
+  width: ${props => props.theme.nav.logoInactiveWidth.mobile};
+  ${props => desktopStyle`
+    top: 50%;
+    width: ${props.theme.nav.logoInactiveWidth.desktop};
+  `}
 
   height: auto;
   & > path {
@@ -36,16 +45,23 @@ const Root = styled(NavLink)`
 
   &.active {
     ${Logo} {
-      top: calc(
-        ${({ theme }) => `(${theme.nav.padding} * 2) + ${theme.nav.itemSize}`}
-      );
       transform: translate(-50%, 0%);
-      width: ${props => props.theme.nav.desktopLogoActiveWidth()};
 
       transition: top ease-out var(--animation-length),
         left ease-out var(--animation-length),
         transform ease-out var(--animation-length),
         width ease-out var(--animation-length);
+
+      top: calc(
+        ${({ theme }) =>
+          `(${theme.nav.padding.top.mobile} + ${theme.nav.padding.bottom.mobile}) + ${theme.nav.itemSize.mobile}`}
+      );
+      width: ${props => props.theme.nav.logoActiveWidth().mobile};
+
+      ${props => desktopStyle`
+        width: ${props.theme.nav.logoActiveWidth().desktop};
+        top: calc(${`(${props.theme.nav.padding.top.desktop} + ${props.theme.nav.padding.bottom.desktop}) + ${props.theme.nav.itemSize.desktop}`})
+      `}
 
       & > path {
         transition: fill ease-out var(--animation-length);
@@ -55,7 +71,7 @@ const Root = styled(NavLink)`
   }
 `
 
-export const DesktopHomeLink: FC = () => {
+export const HomeLink: FC = () => {
   return (
     <Root exact to="/" activeClassName="active">
       <Logo />

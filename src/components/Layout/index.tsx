@@ -4,7 +4,9 @@ import styled from '@emotion/styled'
 import { useLocation } from 'react-router'
 
 import { Navbar } from 'components/Navbar'
+import { desktopMediaQuery } from 'styles/responsive'
 import { useWindowSize } from 'hooks/useWindowSize'
+import { useMediaQuery } from 'hooks/useMediaQuery'
 import { toPixels, getLogoHeightForGivenWidth } from 'utils/layout'
 
 const Root = styled.div`
@@ -25,12 +27,17 @@ export const Layout: FC = ({ children }) => {
   const theme = useTheme()
   const location = useLocation()
   const { width: windowWidth } = useWindowSize()
+  const { match: desktopScreen } = useMediaQuery(`(${desktopMediaQuery})`)
 
   // Computed
   const isHomepage = location.pathname === '/'
-  const _navPaddingValue = toPixels(theme.nav.padding)
+  const _navSidePaddingValue = toPixels(
+    desktopScreen
+      ? theme.nav.padding.sides.desktop
+      : theme.nav.padding.sides.mobile,
+  )
   const _currentLogoHeight = getLogoHeightForGivenWidth(
-    windowWidth - _navPaddingValue * 2,
+    windowWidth - _navSidePaddingValue * 2,
   )
   const homepageOffset = _currentLogoHeight
 

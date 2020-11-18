@@ -2,14 +2,25 @@ import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
 
+import { desktopStyle, mobileStyle } from 'styles/responsive'
+
 const Root = styled.div<{ anchor: 'left' | 'right' }>`
   display: block;
   width: 100%;
   box-sizing: border-box;
-  font-size: ${props => props.theme.nav.itemSize};
-  text-align: ${props => props.anchor};
-  height: ${props => props.theme.nav.itemSize};
-  flex: 1;
+  font-size: ${props => props.theme.nav.itemSize.mobile};
+  height: ${props => props.theme.nav.itemSize.mobile};
+
+  ${mobileStyle`
+    flex-basis: 0;
+  `}
+
+  ${props => desktopStyle`
+    font-size: ${props.theme.nav.itemSize.desktop};
+    height: ${props.theme.nav.itemSize.desktop};
+    text-align: ${props.anchor};
+    flex: 1;
+  `}
 `
 
 const StyledLink = styled(NavLink)`
@@ -17,8 +28,9 @@ const StyledLink = styled(NavLink)`
   font-size: 1em;
   font-weight: 400;
   color: ${props => props.theme.colors.black};
+  height: 100%;
   text-decoration: none;
-  height: ${props => props.theme.nav.itemSize};
+  white-space: nowrap;
 
   &.active {
     text-decoration: underline;

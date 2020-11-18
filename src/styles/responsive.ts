@@ -8,16 +8,16 @@ export const breakpoint = {
 export type Breakpoint = typeof breakpoint
 
 export const mobileMediaQuery =
-  '(max-width: ' + breakpoint.toDesktop.toString() + 'px)'
+  'max-width: ' + breakpoint.toDesktop.toString() + 'px'
 export const desktopMediaQuery =
-  '(min-width:' + (breakpoint.toDesktop + 1).toString() + 'px)'
+  'min-width:' + (breakpoint.toDesktop + 1).toString() + 'px'
 
 export function mobileStyle(
   template: TemplateStringsArray,
   ...args: CSSInterpolation[]
 ): SerializedStyles {
   return css`
-    @media screen and ${mobileMediaQuery} {
+    @media screen and (${mobileMediaQuery}) {
       ${css(template, ...args)}
     }
   `
@@ -28,7 +28,7 @@ export function desktopStyle(
   ...args: CSSInterpolation[]
 ): SerializedStyles {
   return css`
-    @media screen and ${desktopMediaQuery} {
+    @media screen and (${desktopMediaQuery}) {
       ${css(template, ...args)}
     }
   `
