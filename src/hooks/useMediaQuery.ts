@@ -23,8 +23,19 @@ export function useMediaQuery(mediaQuery: string): UseMediaQuery {
     const mq = window.matchMedia(mediaQuery)
     setMatch(mq.matches)
 
-    mq.addEventListener('change', updateMatch)
-    return () => mq.removeEventListener('change', updateMatch)
+    if (mq.addEventListener !== undefined) {
+      mq.addEventListener('change', updateMatch)
+    } else {
+      mq.onchange = updateMatch
+    }
+
+    return () => {
+      if (mq.removeEventListener !== undefined) {
+        mq.removeEventListener('change', updateMatch)
+      } else {
+        mq.onchange = null
+      }
+    }
   }, [match, mediaQuery])
 
   return { match }

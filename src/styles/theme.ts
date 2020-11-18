@@ -25,15 +25,9 @@ export const theme = {
       desktop: '3.1rem',
       mobile: '2rem',
     },
-    logoInactiveWidth: {
+    logoWidth: {
       desktop: '16rem',
       mobile: '12rem',
-    },
-    logoActiveWidth: function () {
-      return {
-        desktop: `calc(100% - (${this.padding.sides.desktop}*2))`,
-        mobile: `calc(100% - (${this.padding.sides.mobile}*2))`,
-      }
     },
     navHeight: function () {
       return {
