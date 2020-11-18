@@ -8,10 +8,10 @@ const Button = styled.button<{ menuIsOpen: boolean }>`
   outline: none;
 
   display: block;
+  height: ${props => props.theme.nav.itemSize.mobile};
   box-sizing: border-box;
   font-size: ${props => props.theme.nav.itemSize.mobile};
   height: ${props => props.theme.nav.itemSize.mobile};
-  flex-basis: 0;
   padding: 0;
   color: ${props => props.theme.colors.black};
   ${props =>
