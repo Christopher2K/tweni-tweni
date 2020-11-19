@@ -30,6 +30,7 @@ export const Layout: FC = ({ children }) => {
   const { match: desktopScreen } = useMediaQuery(`(${desktopMediaQuery})`)
 
   // Computed
+  const currentContentWidth = windowWidth > 1440 ? 1440 : windowWidth
   const isHomepage = location.pathname === '/'
   const _navSidePaddingValue = toPixels(
     desktopScreen
@@ -37,9 +38,9 @@ export const Layout: FC = ({ children }) => {
       : theme.nav.padding.sides.mobile,
   )
   const _currentLogoHeight = getLogoHeightForGivenWidth(
-    windowWidth - _navSidePaddingValue * 2,
+    currentContentWidth - _navSidePaddingValue * 2,
   )
-  const homepageOffset = _currentLogoHeight
+  const homepageOffset = _currentLogoHeight + toPixels('2rem')
 
   return (
     <Root>

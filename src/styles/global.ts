@@ -8,6 +8,8 @@ export const global = css`
 
   :root {
     font-size: ${theme.rootFontSize};
+    background-color: ${theme.colors.white};
+    min-height: 100%;
   }
 
   #root {
