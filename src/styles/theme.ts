@@ -1,5 +1,10 @@
 export const theme = {
   rootFontSize: '10px',
+  fonts: {
+    helvetica: '"Helvetica Neue LT W05 55 Roman"',
+    rubik: '"Rubik"',
+    sneak: '"Sneak"',
+  },
   colors: {
     black: '#000',
     violet: '#545BF1',
