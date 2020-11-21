@@ -1,9 +1,15 @@
 export const theme = {
   rootFontSize: '10px',
+  fonts: {
+    helvetica: '"Helvetica Neue LT W05 55 Roman"',
+    rubik: '"Rubik"',
+    sneak: '"Sneak"',
+  },
   colors: {
-    black: '#000',
+    black: '#252525',
     violet: '#545BF1',
     white: '#FFFEF5',
+    grey: '#838383',
   },
   nav: {
     animationDuration: '250ms',

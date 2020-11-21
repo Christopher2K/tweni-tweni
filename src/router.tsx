@@ -27,7 +27,7 @@ const Links: FC = () => {
       <Route path="/inspirations" exact component={Inspirations} />
       <Route path="/mixs" exact component={Mixs} />
       <Route path="/contact" exact component={Contact} />
-      <Route path="/mention-legales" exact component={LegalNotice} />
+      <Route path="/mentions-legales" exact component={LegalNotice} />
       <Route path="/project/:id" exact component={Project} />
       <Route component={NotFound} />
     </Switch>

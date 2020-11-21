@@ -58,10 +58,6 @@ const Root = styled(NavLink)<{ activeScaleFactor: number }>`
       transition: top ease-out var(--animation-length),
         transform ease-out var(--animation-length);
 
-      ${props => desktopStyle`
-        top: calc(${`(${props.theme.nav.padding.top.desktop} + ${props.theme.nav.padding.bottom.desktop}) + ${props.theme.nav.itemSize.desktop}`})
-      `}
-
       & > path {
         transition: fill ease-out var(--animation-length);
         fill: ${props => props.theme.colors.violet};

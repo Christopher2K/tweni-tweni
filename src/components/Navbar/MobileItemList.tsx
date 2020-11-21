@@ -70,6 +70,7 @@ const Item = styled(NavLink)`
   font-size: 3.1rem;
   color: inherit;
   font-weight: 400;
+  letter-spacing: 0.03em;
 
   &.active {
     text-decoration: underline;
@@ -77,6 +78,7 @@ const Item = styled(NavLink)`
 `
 
 const SocialLink = styled.a`
+  font-family: ${props => props.theme.fonts.sneak};
   font-size: 1.3rem;
   line-height: 1.82rem;
   color: inherit;
