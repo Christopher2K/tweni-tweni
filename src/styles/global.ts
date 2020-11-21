@@ -11,6 +11,7 @@ export const global = css`
   :root {
     font-family: ${theme.fonts.helvetica};
     font-size: ${theme.rootFontSize};
+    color: ${theme.colors.black};
     background-color: ${theme.colors.white};
     min-height: 100%;
   }
@@ -19,5 +20,10 @@ export const global = css`
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
+  }
+
+  #root,
+  body {
+    min-height: 100vh;
   }
 `

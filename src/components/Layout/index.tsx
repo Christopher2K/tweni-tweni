@@ -8,9 +8,17 @@ import { desktopMediaQuery } from 'styles/responsive'
 import { useWindowSize } from 'hooks/useWindowSize'
 import { useMediaQuery } from 'hooks/useMediaQuery'
 import { toPixels, getLogoHeightForGivenWidth } from 'utils/layout'
+import { Footer } from 'components/Footer'
 
 const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
   width: 100%;
+  min-height: 100vh;
+  margin-bottom: 3rem;
 `
 
 interface PageContainerProps {
@@ -19,6 +27,7 @@ interface PageContainerProps {
 }
 const PageContainer = styled.main<PageContainerProps>`
   display: 100%;
+  flex: 1;
   margin-top: ${props => (props.isHomepage ? props.marginTop : 0)}px;
 `
 
@@ -48,6 +57,7 @@ export const Layout: FC = ({ children }) => {
       <PageContainer isHomepage={isHomepage} marginTop={homepageOffset}>
         {children}
       </PageContainer>
+      <Footer />
     </Root>
   )
 }
