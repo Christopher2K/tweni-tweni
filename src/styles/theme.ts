@@ -6,9 +6,10 @@ export const theme = {
     sneak: '"Sneak"',
   },
   colors: {
-    black: '#000',
+    black: '#252525',
     violet: '#545BF1',
     white: '#FFFEF5',
+    grey: '#838383',
   },
   nav: {
     animationDuration: '250ms',
