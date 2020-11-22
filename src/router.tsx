@@ -10,12 +10,15 @@ import { LegalNotice } from 'pages/LegalNotice'
 import { Mixs } from 'pages/Mixs'
 import { NotFound } from 'pages/NotFound'
 import { Project } from 'pages/Project'
+import { WebsiteDataContextProvider } from 'hooks/useWebsiteData'
 
 export const Router: FC = () => (
   <BrowserRouter>
-    <Layout>
-      <Links />
-    </Layout>
+    <WebsiteDataContextProvider>
+      <Layout>
+        <Links />
+      </Layout>
+    </WebsiteDataContextProvider>
   </BrowserRouter>
 )
 

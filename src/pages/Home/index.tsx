@@ -1,7 +1,8 @@
-import React, { useState, FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { Article } from './Article'
 import { desktopStyle } from 'styles/responsive'
+import { useWebsiteData } from 'hooks/useWebsiteData'
 
 const Root = styled.div`
   width: 100%;
@@ -21,18 +22,11 @@ const Root = styled.div`
 `
 
 export const Home: FC = () => {
-  const [articles, setArticles] = useState<Model.Article[]>([])
-
-  useEffect(() => {
-    fetch('/__mock__/fake_articles.json')
-      .then(response => response.json() as Promise<Model.Article[]>)
-      .then(setArticles)
-      .catch(console.error)
-  }, [])
+  const { articles } = useWebsiteData()
 
   return (
     <Root>
-      {articles.map(a => (
+      {articles?.map(a => (
         <Article key={a.title} data={a} />
       ))}
     </Root>
