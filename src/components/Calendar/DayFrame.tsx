@@ -68,7 +68,7 @@ const Metadata = styled.div`
   h1 {
     font-weight: 400;
     font-size: 1.6rem;
-    line-height: 2.7rem;
+    line-height: 2.08rem;
 
     ${desktopStyle`
       line-height: 2.08rem;
@@ -79,7 +79,7 @@ const Metadata = styled.div`
   p {
     text-transform: uppercase;
     font-size: 1rem;
-    line-height: 1.7rem;
+    line-height: 2.08rem;
 
     ${desktopStyle`
       line-height: 1.65rem;
