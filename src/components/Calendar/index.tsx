@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styled from '@emotion/styled'
 import { DayFrame } from './DayFrame'
 import { desktopStyle } from 'styles/responsive'
@@ -25,6 +25,10 @@ const CurrentMonth = styled.div`
   border-top: var(--border-def);
   border-bottom: var(--border-def);
 
+  ${desktopStyle`
+    height: 15rem;
+  `}
+
   p {
     padding: 0 ${props => props.theme.nav.padding.sides.mobile};
     display: flex;
@@ -35,6 +39,10 @@ const CurrentMonth = styled.div`
 
     font-size: 4rem;
     line-height: 4rem;
+
+    ${props => desktopStyle`
+      font-size: 12rem;
+    `}
   }
 `
 
@@ -56,6 +64,8 @@ interface CalendarProps {
 }
 
 export const Calendar: FC<CalendarProps> = ({ articles }) => {
+  const [activeDay, setActiveDay] = useState<number>()
+
   return (
     <Root>
       <CurrentMonth>
@@ -68,10 +78,10 @@ export const Calendar: FC<CalendarProps> = ({ articles }) => {
         {articles.map((a, index) => (
           <DayFrame
             key={a.title}
-            dayNumber={`${
-              index.toString().length === 1 ? '0' : ''
-            }${index.toString()}`}
+            dayNumber={index + 1}
             article={a}
+            activeDay={activeDay}
+            onDayClicked={setActiveDay}
           />
         ))}
       </CalendarFrame>

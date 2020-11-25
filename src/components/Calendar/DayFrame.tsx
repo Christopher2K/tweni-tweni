@@ -12,10 +12,17 @@ const Root = styled.div`
 
   border-bottom: var(--border-def);
 
-  ${desktopStyle`
+  ${props => desktopStyle`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2.8rem 2.8rem 2rem 2.8rem;
+    height: 22.5rem;
+
     border-right: var(--border-def);
 
-    &:nth-child(4n) {
+    &:nth-of-type(4n) {
       border-right: none;
     }
   `}
@@ -62,12 +69,21 @@ const Metadata = styled.div`
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 2.7rem;
+
+    ${desktopStyle`
+      line-height: 2.08rem;
+      margin-bottom: 2rem;
+    `}
   }
 
   p {
     text-transform: uppercase;
     font-size: 1rem;
     line-height: 1.7rem;
+
+    ${desktopStyle`
+      line-height: 1.65rem;
+    `}
   }
 `
 
@@ -81,14 +97,28 @@ const Develop = styled(DevelopIcon)`
 
 interface DayFrameProps {
   article: Model.Article
-  dayNumber: string
+  dayNumber: number
+  activeDay?: number
+  onDayClicked: (dayNumber: number) => any
 }
 
-export const DayFrame: FC<DayFrameProps> = ({ dayNumber, article }) => {
+export const DayFrame: FC<DayFrameProps> = ({
+  dayNumber,
+  article,
+  // activeDay,
+  onDayClicked,
+}) => {
+  const dayNumberText =
+    dayNumber.toString().length === 1
+      ? `0${dayNumber.toString()}`
+      : dayNumber.toString()
+
+  // const isActiveDay = dayNumber === activeDay
+
   return (
-    <Root>
+    <Root onClick={() => onDayClicked(dayNumber)}>
       <Top>
-        <Day>{dayNumber}</Day>
+        <Day>{dayNumberText}</Day>
         <CarouselDots>Carousel DOTS</CarouselDots>
       </Top>
       <ImageWrapper>
