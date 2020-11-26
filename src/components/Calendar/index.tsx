@@ -49,12 +49,14 @@ const CurrentMonth = styled.div`
 const CalendarFrame = styled.div`
   width: 100%;
 
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   ${desktopStyle`
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-bottom: 20rem;
   `}
 `
