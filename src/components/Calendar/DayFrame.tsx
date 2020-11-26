@@ -6,9 +6,13 @@ import { desktopStyle } from 'styles/responsive'
 
 const Root = styled.div`
   --border-def: 1px solid ${props => props.theme.colors.black};
+  display: flex;
+  flex-direction: column;
+
   box-sizing: border-box;
   width: 100%;
   padding: 2rem ${props => props.theme.nav.padding.sides.mobile} 5rem;
+  height: 72rem;
 
   border-bottom: var(--border-def);
 
