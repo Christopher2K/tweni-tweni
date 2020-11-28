@@ -2,12 +2,22 @@ import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 
+import nextCursor from 'assets/icons/next.png'
+import prevCursor from 'assets/icons/prev.png'
+import { desktopStyle } from 'styles/responsive'
+
 const Carousel = styled.div`
   position: relative;
   overflow: hidden;
 
   width: 100%;
   margin-bottom: 1rem;
+
+  ${desktopStyle`
+    margin: auto;
+    width: 80%;
+    height: 100%;
+  `}
 `
 
 const CarouselRow = styled.div<{ activeImageIndex: number }>`
@@ -25,12 +35,24 @@ const CarouselRow = styled.div<{ activeImageIndex: number }>`
       )
     );
   `}
+
+  ${desktopStyle`
+    height: 100%;
+  `}
 `
 
 const CurrentImage = styled.img`
   width: 100%;
   height: auto;
   margin-bottom: 0.5rem;
+
+  ${desktopStyle`
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    flex-shrink: 1;
+  `}
 `
 
 const CarouselPhoto = styled.div`
@@ -39,12 +61,26 @@ const CarouselPhoto = styled.div`
   width: 100%;
   font-size: 0.75rem;
   margin-right: ${props => props.theme.nav.padding.sides.mobile};
+
+  ${desktopStyle`
+    box-sizing: border-box;
+    padding: 3.6rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `}
 `
 
 const Caption = styled.p`
   font-family: ${props => props.theme.fonts.sneak};
   font-size: 0.75rem;
   line-height: 1.125rem;
+
+  ${desktopStyle`
+    flex-shrink: 0;
+  `}
 `
 
 const CarouselButton = styled.button<{ side: 'left' | 'right' }>`
@@ -56,6 +92,8 @@ const CarouselButton = styled.button<{ side: 'left' | 'right' }>`
   outline: none;
   height: 100%;
   width: 50%;
+  cursor: url(${props => (props.side === 'left' ? prevCursor : nextCursor)}),
+    auto;
 `
 
 interface ContainerProps {
@@ -73,8 +111,8 @@ export const Container: FC<ContainerProps> = ({
 }) => {
   return (
     <Carousel>
-      <CarouselButton side="left" onClick={onPrevClicked} />
       <CarouselRow activeImageIndex={activeImageIndex}>
+        <CarouselButton side="left" onClick={onPrevClicked} />
         {images.map((cp, index) => (
           <CarouselPhoto key={index}>
             <CurrentImage src={cp.url} alt={cp.caption} />
@@ -82,6 +120,7 @@ export const Container: FC<ContainerProps> = ({
           </CarouselPhoto>
         ))}
       </CarouselRow>
+      <CarouselButton side="left" onClick={onPrevClicked} />
       <CarouselButton side="right" onClick={onNextClicked} />
     </Carousel>
   )

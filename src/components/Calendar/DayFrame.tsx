@@ -31,6 +31,7 @@ const Root = styled.div<StyleProps>`
   transition: 500ms width linear, 500ms height linear;
 
   ${props => desktopStyle`
+    flex-direction: row;
     width: 25%;
     height: 26rem;
 
@@ -63,6 +64,8 @@ const Root = styled.div<StyleProps>`
     }
   `}
 `
+
+const Informations = styled.div``
 
 const FixedSizeContainer = styled.div<StyleProps>`
   display: flex;
@@ -199,6 +202,20 @@ const Description = styled.p<StyleProps>`
   `}
 `
 
+const CarouselContainer = styled.div`
+  flex: 1;
+  flex-shrink: 1;
+
+  width: 100%;
+  height: 100%;
+`
+
+const CarouselDotContainer = styled.div`
+  position: absolute;
+  right: 2rem;
+  bottom: 3rem;
+`
+
 interface DayFrameProps {
   article: Model.Article
   dayNumber: number
@@ -290,42 +307,60 @@ export const DayFrame: FC<DayFrameProps> = ({
       {...styleProps}
     >
       {isActiveDay && <DesktopHide onClick={onCloseClick} />}
-      <FixedSizeContainer {...styleProps}>
-        <Top>
-          <Day {...styleProps}>{dayNumberText}</Day>
+      <Informations>
+        <FixedSizeContainer {...styleProps}>
+          <Top>
+            <Day {...styleProps}>{dayNumberText}</Day>
+            {mobileScreen && (
+              <Carousel.Dots
+                activeImageIndex={activeImageIndex}
+                carouselLength={article.carouselPhotos.length}
+              />
+            )}
+          </Top>
           {mobileScreen && (
-            <Carousel.Dots
+            <Carousel.Container
+              onNextClicked={showNextImage}
+              onPrevClicked={showPreviousImage}
               activeImageIndex={activeImageIndex}
-              carouselLength={article.carouselPhotos.length}
+              images={article.carouselPhotos}
             />
           )}
-        </Top>
-        {mobileScreen && (
+          <Bottom {...styleProps}>
+            <Metadata>
+              <h1>{article.title}</h1>
+              <p>{article.subject}</p>
+              <p>{article.categories.join(' | ')}</p>
+            </Metadata>
+            {isActiveDay ? (
+              <Hide onClick={onCloseClick} />
+            ) : (
+              <Develop onClick={onDayClick} />
+            )}
+          </Bottom>
+          {isActiveDay && mobileScreen && (
+            <Description {...styleProps}>{article.description}</Description>
+          )}
+        </FixedSizeContainer>
+        {isActiveDay && !mobileScreen && (
+          <Description {...styleProps}>{article.description}</Description>
+        )}
+      </Informations>
+      {isActiveDay && !mobileScreen && (
+        <CarouselContainer>
           <Carousel.Container
             onNextClicked={showNextImage}
             onPrevClicked={showPreviousImage}
             activeImageIndex={activeImageIndex}
             images={article.carouselPhotos}
           />
-        )}
-        <Bottom {...styleProps}>
-          <Metadata>
-            <h1>{article.title}</h1>
-            <p>{article.subject}</p>
-            <p>{article.categories.join(' | ')}</p>
-          </Metadata>
-          {isActiveDay ? (
-            <Hide onClick={onCloseClick} />
-          ) : (
-            <Develop onClick={onDayClick} />
-          )}
-        </Bottom>
-        {isActiveDay && mobileScreen && (
-          <Description {...styleProps}>{article.description}</Description>
-        )}
-      </FixedSizeContainer>
-      {isActiveDay && !mobileScreen && (
-        <Description {...styleProps}>{article.description}</Description>
+          <CarouselDotContainer>
+            <Carousel.Dots
+              activeImageIndex={activeImageIndex}
+              carouselLength={article.carouselPhotos.length}
+            />
+          </CarouselDotContainer>
+        </CarouselContainer>
       )}
     </Root>
   )
