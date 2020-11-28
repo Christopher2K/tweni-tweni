@@ -9,9 +9,9 @@ const Root = styled.div`
   margin-top: 2rem;
   ${desktopStyle`
     margin-top: 12rem;
+    border-right: var(--border-def);
+    border-left: var(--border-def);
   `}
-  border-right: var(--border-def);
-  border-left: var(--border-def);
 `
 
 const CurrentMonth = styled.div`
@@ -66,7 +66,7 @@ interface CalendarProps {
 }
 
 export const Calendar: FC<CalendarProps> = ({ articles }) => {
-  const [activeDay, setActiveDay] = useState<number>()
+  const [activeDay, setActiveDay] = useState<number>(-1)
 
   return (
     <Root>

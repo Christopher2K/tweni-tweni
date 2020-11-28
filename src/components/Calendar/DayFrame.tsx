@@ -1,43 +1,38 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 
 import { ReactComponent as DevelopIcon } from 'assets/icons/develop.svg'
-import { desktopStyle } from 'styles/responsive'
+import { ReactComponent as DesktopHideIcon } from 'assets/icons/collapse.svg'
+import { ReactComponent as HideIcon } from 'assets/icons/hide.svg'
+import { desktopStyle, mobileMediaQuery } from 'styles/responsive'
+import { useMediaQuery } from 'hooks/useMediaQuery'
+import { useWindowSize } from 'hooks/useWindowSize'
+import { Carousel } from 'components/Carousel'
 
 interface StyleProps {
   isActiveDay?: boolean
   isInActiveRow: boolean
+  frameSize: number
 }
 
 const Root = styled.div<StyleProps>`
   --border-def: 1px solid ${props => props.theme.colors.black};
-  transition: 500ms width linear, 500ms height linear;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   box-sizing: border-box;
   width: 100%;
-  padding: 2rem ${props => props.theme.nav.padding.sides.mobile} 5rem;
-  height: 72rem;
-
   border-bottom: var(--border-def);
 
-  ${props =>
-    props.isActiveDay != null
-      ? css`
-          height: 100rem;
-        `
-      : null}
+  transition: 500ms width linear, 500ms height linear;
 
   ${props => desktopStyle`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 2.8rem 2.8rem 2rem 2.8rem;
     width: 25%;
-    height: 22.5rem;
+    height: 26rem;
 
     border-right: var(--border-def);
 
@@ -57,7 +52,6 @@ const Root = styled.div<StyleProps>`
       !props.isActiveDay &&
       css`
         width: 5rem;
-        padding: 2.5rem 0 0 1rem;
       `
     }
 
@@ -65,6 +59,35 @@ const Root = styled.div<StyleProps>`
       props.isActiveDay &&
       css`
         width: calc(100% - (5rem * 3));
+      `
+    }
+  `}
+`
+
+const FixedSizeContainer = styled.div<StyleProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: ${props => props.frameSize}px;
+  box-sizing: border-box;
+  padding: 2rem ${props => props.theme.nav.padding.sides.mobile} 5rem;
+
+  ${props => desktopStyle`
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 26rem;
+    padding: 2.8rem 2.8rem 2rem 2.8rem;
+    width: 100%;
+
+    ${
+      props.isInActiveRow &&
+      !props.isActiveDay &&
+      css`
+        width: 5rem;
+        padding: 2.5rem 0 0 1rem;
       `
     }
   `}
@@ -96,24 +119,17 @@ const Day = styled.span<StyleProps>`
   `}
 `
 
-const ImageWrapper = styled.div<StyleProps>`
-  width: 100%;
-  margin-bottom: 1rem;
-  ${desktopStyle`display: none;`}
-`
-
-const CurrentImage = styled.img`
-  width: 100%;
-  height: auto;
-`
-
 const Bottom = styled.div<StyleProps>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 
+  width: 100%;
+  padding-bottom: 1.5rem;
+
   ${props => desktopStyle`
+    padding-bottom: 0;
     ${
       !props.isActiveDay &&
       props.isInActiveRow &&
@@ -150,19 +166,44 @@ const Metadata = styled.div`
   }
 `
 
-const CarouselDots = styled.div`
+const Develop = styled(DevelopIcon)`
   ${desktopStyle`display: none;`}
 `
 
-const Develop = styled(DevelopIcon)`
+const Hide = styled(HideIcon)`
   ${desktopStyle`display: none;`}
+`
+
+const DesktopHide = styled(DesktopHideIcon)`
+  display: none;
+
+  ${desktopStyle`
+    display: block;
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+  `}
+`
+
+const Description = styled.p<StyleProps>`
+  font-family: ${props => props.theme.fonts.rubik};
+  font-size: 1.8rem;
+  line-height: 2.52rem;
+  box-sizing: border-box;
+
+  ${props => desktopStyle`
+    padding: 0 2.8rem 0 2.8rem;
+    font-size: 1.3rem;
+    line-height: 1.82rem;
+    width: ${props.frameSize}px;
+  `}
 `
 
 interface DayFrameProps {
   article: Model.Article
   dayNumber: number
-  activeDay?: number
-  onDayClicked: (dayNumber: number) => any
+  activeDay: number
+  onDayClicked: (dayNumber: number) => void
 }
 
 export const DayFrame: FC<DayFrameProps> = ({
@@ -171,6 +212,14 @@ export const DayFrame: FC<DayFrameProps> = ({
   activeDay,
   onDayClicked,
 }) => {
+  // Hooks
+  const { match: mobileScreen } = useMediaQuery(`(${mobileMediaQuery})`)
+  const { width } = useWindowSize()
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+
+  // Computed
+  const frameSize = mobileScreen ? width : Math.min(1440, width) / 4
+  const aDayIsActive = activeDay !== -1
   const dayNumberText =
     dayNumber.toString().length === 1
       ? `0${dayNumber.toString()}`
@@ -179,7 +228,7 @@ export const DayFrame: FC<DayFrameProps> = ({
   const isActiveDay = dayNumber === activeDay
   const isLastColumn = dayNumber % 4 === 0
   const isInActiveRow = (() => {
-    if (!activeDay) return false
+    if (!aDayIsActive) return false
     const activeDayIsLastColumn = activeDay % 4 === 0
     if (isLastColumn) {
       return (
@@ -197,25 +246,87 @@ export const DayFrame: FC<DayFrameProps> = ({
   const styleProps: StyleProps = {
     isInActiveRow,
     isActiveDay,
+    frameSize,
   }
 
+  // Callback
+  const onDayClick = useCallback(
+    function onDayClick() {
+      onDayClicked(dayNumber)
+    },
+    [onDayClicked, dayNumber],
+  )
+
+  const onCloseClick = useCallback(
+    function onCloseClick() {
+      onDayClicked(-1)
+    },
+    [onDayClicked],
+  )
+
+  const showNextImage = useCallback(function showNextImage() {
+    setActiveImageIndex(currentImageIndex => {
+      if (currentImageIndex === article.carouselPhotos.length - 1) {
+        return 0
+      } else {
+        return currentImageIndex + 1
+      }
+    })
+  }, [])
+
+  const showPreviousImage = useCallback(function showPreviousImage() {
+    setActiveImageIndex(currentImageIndex => {
+      if (currentImageIndex === 0) {
+        return article.carouselPhotos.length - 1
+      } else {
+        return currentImageIndex - 1
+      }
+    })
+  }, [])
+
   return (
-    <Root onClick={() => onDayClicked(dayNumber)} {...styleProps}>
-      <Top>
-        <Day {...styleProps}>{dayNumberText}</Day>
-        <CarouselDots>Carousel DOTS</CarouselDots>
-      </Top>
-      <ImageWrapper {...styleProps}>
-        <CurrentImage src={article.thumbnailPhoto} alt={article.title} />
-        <p>Caption</p>
-      </ImageWrapper>
-      <Bottom {...styleProps}>
-        <Metadata>
-          <h1>{article.title}</h1>
-          <p>{article.categories.join(' | ')}</p>
-        </Metadata>
-        <Develop />
-      </Bottom>
+    <Root
+      onClick={mobileScreen || isActiveDay ? undefined : onDayClick}
+      {...styleProps}
+    >
+      {isActiveDay && <DesktopHide onClick={onCloseClick} />}
+      <FixedSizeContainer {...styleProps}>
+        <Top>
+          <Day {...styleProps}>{dayNumberText}</Day>
+          {mobileScreen && (
+            <Carousel.Dots
+              activeImageIndex={activeImageIndex}
+              carouselLength={article.carouselPhotos.length}
+            />
+          )}
+        </Top>
+        {mobileScreen && (
+          <Carousel.Container
+            onNextClicked={showNextImage}
+            onPrevClicked={showPreviousImage}
+            activeImageIndex={activeImageIndex}
+            images={article.carouselPhotos}
+          />
+        )}
+        <Bottom {...styleProps}>
+          <Metadata>
+            <h1>{article.title}</h1>
+            <p>{article.subject}</p>
+            <p>{article.categories.join(' | ')}</p>
+          </Metadata>
+          {isActiveDay ? (
+            <Hide onClick={onCloseClick} />
+          ) : (
+            <Develop onClick={onDayClick} />
+          )}
+        </Bottom>
+        {isActiveDay && mobileScreen && (
+          <Description {...styleProps}>{article.description}</Description>
+        )}
+      </FixedSizeContainer>
+      {isActiveDay && !mobileScreen && (
+        <Description {...styleProps}>{article.description}</Description>
+      )}
     </Root>
   )
 }
