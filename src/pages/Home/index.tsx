@@ -1,34 +1,32 @@
 import React, { FC } from 'react'
-import styled from '@emotion/styled'
-import { Article } from './Article'
-import { desktopStyle } from 'styles/responsive'
+import { format, parse } from 'date-fns'
+
+import { ThumbnailGrid } from 'components/ThumbnailGrid'
 import { useWebsiteData } from 'hooks/useWebsiteData'
-
-const Root = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-
-  display: grid;
-  grid-template-columns: 1fr; /* one full width colum */
-  grid-template-rows: auto;
-  grid-gap: 8rem;
-
-  padding: 0 ${props => props.theme.nav.padding.sides.mobile} 5rem;
-
-  ${props => desktopStyle`
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 5rem ${props.theme.nav.padding.sides.desktop} 7rem;
-  `}
-`
+import { ThumbnailGridItem } from 'components/ThumbnailGridItem'
 
 export const Home: FC = () => {
   const { articles } = useWebsiteData()
 
   return (
-    <Root>
-      {articles?.map(a => (
-        <Article key={a.title} data={a} />
-      ))}
-    </Root>
+    <ThumbnailGrid>
+      {articles?.map(a => {
+        const categoryText = a.categories.map(c => c.toUpperCase()).join(' | ')
+        const formattedDate = format(
+          parse(a.date, 'dd/MM/yyyy', new Date()),
+          'dd.MM.yy',
+        )
+        return (
+          <ThumbnailGridItem
+            key={a.id}
+            metaInfo={`${categoryText} | ${formattedDate}`}
+            image={a.thumbnailPhoto}
+            imageAlt={a.title}
+            author={a.author}
+            title={a.title}
+          />
+        )
+      })}
+    </ThumbnailGrid>
   )
 }
