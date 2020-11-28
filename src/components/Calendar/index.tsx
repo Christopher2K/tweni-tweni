@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 import styled from '@emotion/styled'
 import { DayFrame } from './DayFrame'
 import { desktopStyle } from 'styles/responsive'
+import { css, Global } from '@emotion/react'
 
 const Root = styled.div`
   --border-def: 1px solid ${props => props.theme.colors.black};
@@ -67,9 +68,19 @@ interface CalendarProps {
 
 export const Calendar: FC<CalendarProps> = ({ articles }) => {
   const [activeDay, setActiveDay] = useState<number>(-1)
+  const activeArticle: Model.Article | undefined = articles[activeDay]
 
   return (
     <Root>
+      {activeArticle && (
+        <Global
+          styles={css`
+            :root {
+              background-color: ${activeArticle.color};
+            }
+          `}
+        />
+      )}
       <CurrentMonth>
         <p>
           <span>Décembre</span>

@@ -14,6 +14,7 @@ declare namespace Model {
     subject: string
     description: string
     carouselPhotos: PhotoWithCaption[]
+    color: string
   }
 
   interface Mix {

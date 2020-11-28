@@ -14,6 +14,7 @@ export const global = css`
     color: ${theme.colors.black};
     background-color: ${theme.colors.white};
     min-height: 100%;
+    transition: background-color 500ms linear;
   }
 
   #root {
