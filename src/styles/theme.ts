@@ -10,6 +10,7 @@ export const theme = {
     violet: '#545BF1',
     white: '#FFFEF5',
     grey: '#838383',
+    lightGrey: '#BBBBBB',
   },
   nav: {
     animationDuration: '250ms',

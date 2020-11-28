@@ -33,7 +33,9 @@ const StyledLink = styled(NavLink)`
   white-space: nowrap;
 
   &.active {
-    text-decoration: underline;
+    display: inline-block;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid ${props => props.theme.colors.black};
   }
 `
 
