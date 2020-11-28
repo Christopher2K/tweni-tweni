@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
-import { format, parse } from 'date-fns'
 
 const Root = styled.div``
 
-const ArticleMetaInfo = styled.p`
+const MetaInfo = styled.p`
   color: ${props => props.theme.colors.violet};
   font-size: 1.1rem;
   margin-bottom: 1rem;
@@ -35,25 +34,27 @@ const Thumbnail = styled.img`
   margin-bottom: 2rem;
 `
 
-interface ArticleProps {
-  data: Model.Article
+interface ThumbnailGridItemProps {
+  metaInfo?: string
+  image: string
+  imageAlt: string
+  title: string
+  author: string
 }
 
-export const Article: FC<ArticleProps> = ({ data }) => {
-  const categoryText = data.categories.map(c => c.toUpperCase()).join(' | ')
-  const formattedDate = format(
-    parse(data.date, 'dd/MM/yyyy', new Date()),
-    'dd.MM.yy',
-  )
-
+export const ThumbnailGridItem: FC<ThumbnailGridItemProps> = ({
+  metaInfo,
+  image,
+  imageAlt,
+  title,
+  author,
+}) => {
   return (
     <Root>
-      <ArticleMetaInfo>
-        {categoryText} | {formattedDate}
-      </ArticleMetaInfo>
-      <Thumbnail src={data.thumbnailPhoto} alt={data.title} />
-      <Title>{data.title}</Title>
-      <AuthorName>{data.author}</AuthorName>
+      {metaInfo && <MetaInfo>{metaInfo}</MetaInfo>}
+      <Thumbnail src={image} alt={imageAlt} />
+      <Title>{title}</Title>
+      <AuthorName>{author}</AuthorName>
     </Root>
   )
 }

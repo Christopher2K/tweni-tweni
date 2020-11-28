@@ -5,6 +5,7 @@ declare namespace Model {
   }
 
   interface Article {
+    id: string
     categories: string[]
     date: string
     title: string
@@ -13,5 +14,13 @@ declare namespace Model {
     subject: string
     description: string
     carouselPhotos: PhotoWithCaption[]
+  }
+
+  interface Mix {
+    id: string
+    title: string
+    author: string
+    thumbnailPhoto: string
+    url: string
   }
 }
