@@ -10,12 +10,14 @@ import Prismic from 'prismic-javascript'
 import { usePrismic } from './usePrismic'
 import {
   fromPrismicDataToArticleModel,
+  fromPrismicDataToInxpirationModel,
   fromPrismicDataToMixModel,
 } from 'utils/data'
 
 interface WebsiteData {
   articles?: Model.Article[]
   mixs?: Model.Mix[]
+  inspirations?: Model.Inspiration[]
 }
 
 const initialData: WebsiteData = {}
@@ -30,6 +32,7 @@ export function useWebsiteData(): WebsiteData {
 export const WebsiteDataContextProvider: FC = ({ children }) => {
   const prismic = usePrismic()
   const [articles, setArticles] = useState<Model.Article[]>()
+  const [inspirations, setInspirations] = useState<Model.Inspiration[]>()
   const [mixs, setMixs] = useState<Model.Mix[]>()
 
   useEffect(() => {
@@ -45,7 +48,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
 
     prismic
       .query(Prismic.Predicates.at('document.type', 'article'), {
-        orderings: '[my.article.date]',
+        orderings: '[my.article.date desc]',
         pageSize: 100,
       })
       .then(prismicDocument => {
@@ -53,6 +56,19 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
           fromPrismicDataToArticleModel,
         )
         setArticles(articles)
+      })
+      .catch(console.error)
+
+    prismic
+      .query(Prismic.Predicates.at('document.type', 'inspiration'), {
+        orderings: '[my.inspirations.date]',
+        pageSize: 100,
+      })
+      .then(prismicDocument => {
+        const inspirations: Model.Inspiration[] = prismicDocument.results.map(
+          fromPrismicDataToInxpirationModel,
+        )
+        setInspirations(inspirations)
       })
       .catch(console.error)
 
@@ -75,6 +91,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
       value={{
         articles,
         mixs,
+        inspirations,
       }}
     >
       {children}

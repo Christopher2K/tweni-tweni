@@ -216,7 +216,7 @@ const CarouselDotContainer = styled.div`
 `
 
 interface DayFrameProps {
-  article: Model.Article
+  inspiration: Model.Inspiration
   dayNumber: number
   activeDay: number
   onDayClicked: (dayNumber: number) => void
@@ -224,7 +224,7 @@ interface DayFrameProps {
 
 export const DayFrame: FC<DayFrameProps> = ({
   dayNumber,
-  article,
+  inspiration,
   activeDay,
   onDayClicked,
 }) => {
@@ -282,7 +282,7 @@ export const DayFrame: FC<DayFrameProps> = ({
 
   const showNextImage = useCallback(function showNextImage() {
     setActiveImageIndex(currentImageIndex => {
-      if (currentImageIndex === article.carousel.length - 1) {
+      if (currentImageIndex === inspiration.carousel.length - 1) {
         return 0
       } else {
         return currentImageIndex + 1
@@ -293,7 +293,7 @@ export const DayFrame: FC<DayFrameProps> = ({
   const showPreviousImage = useCallback(function showPreviousImage() {
     setActiveImageIndex(currentImageIndex => {
       if (currentImageIndex === 0) {
-        return article.carousel.length - 1
+        return inspiration.carousel.length - 1
       } else {
         return currentImageIndex - 1
       }
@@ -313,7 +313,7 @@ export const DayFrame: FC<DayFrameProps> = ({
             {mobileScreen && (
               <Carousel.Dots
                 activeImageIndex={activeImageIndex}
-                carouselLength={article.carousel.length}
+                carouselLength={inspiration.carousel.length}
               />
             )}
           </Top>
@@ -322,14 +322,14 @@ export const DayFrame: FC<DayFrameProps> = ({
               onNextClicked={showNextImage}
               onPrevClicked={showPreviousImage}
               activeImageIndex={activeImageIndex}
-              images={article.carousel}
+              images={inspiration.carousel}
             />
           )}
           <Bottom {...styleProps}>
             <Metadata>
-              <h1>{article.title}</h1>
-              <p>{article.subject}</p>
-              <p>{article.categories.join(' | ')}</p>
+              <h1>{inspiration.title}</h1>
+              <p>{inspiration.subject}</p>
+              <p>{inspiration.categories.join(' | ')}</p>
             </Metadata>
             {isActiveDay ? (
               <Hide onClick={onCloseClick} />
@@ -340,14 +340,14 @@ export const DayFrame: FC<DayFrameProps> = ({
           {isActiveDay && mobileScreen && (
             <Description
               {...styleProps}
-              dangerouslySetInnerHTML={{ __html: article.description }}
+              dangerouslySetInnerHTML={{ __html: inspiration.description }}
             />
           )}
         </FixedSizeContainer>
         {isActiveDay && !mobileScreen && (
           <Description
             {...styleProps}
-            dangerouslySetInnerHTML={{ __html: article.description }}
+            dangerouslySetInnerHTML={{ __html: inspiration.description }}
           />
         )}
       </Informations>
@@ -357,12 +357,12 @@ export const DayFrame: FC<DayFrameProps> = ({
             onNextClicked={showNextImage}
             onPrevClicked={showPreviousImage}
             activeImageIndex={activeImageIndex}
-            images={article.carousel}
+            images={inspiration.carousel}
           />
           <CarouselDotContainer>
             <Carousel.Dots
               activeImageIndex={activeImageIndex}
-              carouselLength={article.carousel.length}
+              carouselLength={inspiration.carousel.length}
             />
           </CarouselDotContainer>
         </CarouselContainer>

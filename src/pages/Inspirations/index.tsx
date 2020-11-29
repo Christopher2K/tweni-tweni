@@ -6,7 +6,7 @@ import { Calendar } from 'components/Calendar'
 import { useWebsiteData } from 'hooks/useWebsiteData'
 
 export const Inspirations: FC = () => {
-  const { articles } = useWebsiteData()
+  const { inspirations } = useWebsiteData()
 
   return (
     <PageRoot>
@@ -21,7 +21,7 @@ export const Inspirations: FC = () => {
         pellentesque. Etiam eget magna vestibulum, semper sapien non, faucibus
         ex. Pellentesque habitant morbi tristique senectus et netus
       </PageDescription>
-      {articles !== undefined && <Calendar articles={articles} />}
+      {inspirations !== undefined && <Calendar inspirations={inspirations} />}
     </PageRoot>
   )
 }

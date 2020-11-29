@@ -63,22 +63,21 @@ const CalendarFrame = styled.div`
 `
 
 interface CalendarProps {
-  articles: Model.Article[]
+  inspirations: Model.Inspiration[]
 }
 
-export const Calendar: FC<CalendarProps> = ({ articles }) => {
+export const Calendar: FC<CalendarProps> = ({ inspirations }) => {
   const [activeDay, setActiveDay] = useState<number>(-1)
-  const activeArticle: Model.Article | undefined = articles[activeDay - 1]
-
-  console.log(activeArticle)
+  const activeInspiration: Model.Inspiration | undefined =
+    inspirations[activeDay - 1]
 
   return (
     <Root>
-      {activeArticle && (
+      {activeInspiration && (
         <Global
           styles={css`
             :root {
-              background-color: ${activeArticle.color};
+              background-color: ${activeInspiration.color};
             }
           `}
         />
@@ -90,11 +89,11 @@ export const Calendar: FC<CalendarProps> = ({ articles }) => {
         </p>
       </CurrentMonth>
       <CalendarFrame>
-        {articles.map((a, index) => (
+        {inspirations.map((i, index) => (
           <DayFrame
-            key={a.title}
+            key={i.id}
             dayNumber={index + 1}
-            article={a}
+            inspiration={i}
             activeDay={activeDay}
             onDayClicked={setActiveDay}
           />

@@ -4,17 +4,27 @@ declare namespace Model {
     caption: string
   }
 
+  interface Inspiration {
+    id: string
+    title: string
+    artist: string
+    date: string
+    subject: string
+    color: string
+    categories: string[]
+    carousel: PhotoWithCaption[]
+    description: string
+  }
+
   interface Article {
     uid: string
     title: string
+    subtitle: string
     date: string
-    subject: string
-    author: string
-    color: string
     thumbnailPhoto: string
-    description: string
+    author: string
     categories: string[]
-    carousel: PhotoWithCaption[]
+    content: string
   }
 
   interface Mix {
