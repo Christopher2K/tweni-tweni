@@ -5,16 +5,16 @@ declare namespace Model {
   }
 
   interface Article {
-    id: string
-    categories: string[]
-    date: string
+    uid: string
     title: string
-    thumbnailPhoto: string
-    author: string
+    date: string
     subject: string
-    description: string
-    carouselPhotos: PhotoWithCaption[]
+    author: string
     color: string
+    thumbnailPhoto: string
+    description: string
+    categories: string[]
+    carousel: PhotoWithCaption[]
   }
 
   interface Mix {

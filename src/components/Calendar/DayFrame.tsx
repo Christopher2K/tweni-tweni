@@ -36,9 +36,8 @@ const Root = styled.div<StyleProps>`
     height: 26rem;
 
     border-right: var(--border-def);
-
-    &:nth-of-type(4n) {
-      border-right: none;
+    &:nth-of-type(4n+1) {
+      border-left: var(--border-def);
     }
 
     ${
@@ -283,7 +282,7 @@ export const DayFrame: FC<DayFrameProps> = ({
 
   const showNextImage = useCallback(function showNextImage() {
     setActiveImageIndex(currentImageIndex => {
-      if (currentImageIndex === article.carouselPhotos.length - 1) {
+      if (currentImageIndex === article.carousel.length - 1) {
         return 0
       } else {
         return currentImageIndex + 1
@@ -294,7 +293,7 @@ export const DayFrame: FC<DayFrameProps> = ({
   const showPreviousImage = useCallback(function showPreviousImage() {
     setActiveImageIndex(currentImageIndex => {
       if (currentImageIndex === 0) {
-        return article.carouselPhotos.length - 1
+        return article.carousel.length - 1
       } else {
         return currentImageIndex - 1
       }
@@ -314,7 +313,7 @@ export const DayFrame: FC<DayFrameProps> = ({
             {mobileScreen && (
               <Carousel.Dots
                 activeImageIndex={activeImageIndex}
-                carouselLength={article.carouselPhotos.length}
+                carouselLength={article.carousel.length}
               />
             )}
           </Top>
@@ -323,7 +322,7 @@ export const DayFrame: FC<DayFrameProps> = ({
               onNextClicked={showNextImage}
               onPrevClicked={showPreviousImage}
               activeImageIndex={activeImageIndex}
-              images={article.carouselPhotos}
+              images={article.carousel}
             />
           )}
           <Bottom {...styleProps}>
@@ -339,11 +338,17 @@ export const DayFrame: FC<DayFrameProps> = ({
             )}
           </Bottom>
           {isActiveDay && mobileScreen && (
-            <Description {...styleProps}>{article.description}</Description>
+            <Description
+              {...styleProps}
+              dangerouslySetInnerHTML={{ __html: article.description }}
+            />
           )}
         </FixedSizeContainer>
         {isActiveDay && !mobileScreen && (
-          <Description {...styleProps}>{article.description}</Description>
+          <Description
+            {...styleProps}
+            dangerouslySetInnerHTML={{ __html: article.description }}
+          />
         )}
       </Informations>
       {isActiveDay && !mobileScreen && (
@@ -352,12 +357,12 @@ export const DayFrame: FC<DayFrameProps> = ({
             onNextClicked={showNextImage}
             onPrevClicked={showPreviousImage}
             activeImageIndex={activeImageIndex}
-            images={article.carouselPhotos}
+            images={article.carousel}
           />
           <CarouselDotContainer>
             <Carousel.Dots
               activeImageIndex={activeImageIndex}
-              carouselLength={article.carouselPhotos.length}
+              carouselLength={article.carousel.length}
             />
           </CarouselDotContainer>
         </CarouselContainer>

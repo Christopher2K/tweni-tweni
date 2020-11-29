@@ -10,16 +10,14 @@ const Root = styled.div`
   margin-top: 2rem;
   ${desktopStyle`
     margin-top: 12rem;
-    border-right: var(--border-def);
-    border-left: var(--border-def);
   `}
 `
 
 const CurrentMonth = styled.div`
-  --border-def: 1px solid ${props => props.theme.colors.black};
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 
   width: 100%;
   height: 7rem;
@@ -28,6 +26,8 @@ const CurrentMonth = styled.div`
 
   ${desktopStyle`
     height: 15rem;
+    border-left: var(--border-def);
+    border-right: var(--border-def);
   `}
 
   p {
@@ -68,7 +68,9 @@ interface CalendarProps {
 
 export const Calendar: FC<CalendarProps> = ({ articles }) => {
   const [activeDay, setActiveDay] = useState<number>(-1)
-  const activeArticle: Model.Article | undefined = articles[activeDay]
+  const activeArticle: Model.Article | undefined = articles[activeDay - 1]
+
+  console.log(activeArticle)
 
   return (
     <Root>
