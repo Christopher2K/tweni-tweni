@@ -24,6 +24,7 @@ export const Mixs: FC = () => {
         <ThumbnailGrid>
           {mixs.map(m => (
             <ThumbnailGridItem
+              url={m.url}
               key={m.id}
               title={m.title}
               image={m.thumbnailPhoto}

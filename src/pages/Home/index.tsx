@@ -13,6 +13,8 @@ export const Home: FC = () => {
         const categoryText = a.categories.map(c => c.toUpperCase()).join(' | ')
         return (
           <ThumbnailGridItem
+            appLink
+            url={`/article/${a.uid}`}
             key={a.uid}
             metaInfo={`${categoryText} | ${a.date}`}
             image={a.thumbnailPhoto}

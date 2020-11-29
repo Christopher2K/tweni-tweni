@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 
-const Root = styled.div``
+const RootLink = styled.a``
 
 const MetaInfo = styled.p`
   color: ${props => props.theme.colors.violet};
@@ -40,6 +41,8 @@ interface ThumbnailGridItemProps {
   imageAlt: string
   title: string
   author: string
+  url: string
+  appLink?: boolean
 }
 
 export const ThumbnailGridItem: FC<ThumbnailGridItemProps> = ({
@@ -48,9 +51,15 @@ export const ThumbnailGridItem: FC<ThumbnailGridItemProps> = ({
   imageAlt,
   title,
   author,
+  url,
+  appLink,
 }) => {
+  const Root = appLink ? Link : RootLink
+  const linkProps = appLink ? { to: url } : { href: url, target: '_blank' }
+
   return (
-    <Root>
+    // @ts-expect-error
+    <Root {...linkProps}>
       {metaInfo && <MetaInfo>{metaInfo}</MetaInfo>}
       <Thumbnail src={image} alt={imageAlt} />
       <Title>{title}</Title>
