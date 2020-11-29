@@ -14,12 +14,14 @@ const Root = styled.div`
   width: 100%;
   padding: 0 ${props => props.theme.nav.padding.sides.mobile} 0;
   font-size: 1.4rem;
+  margin-top: 4rem;
 
   ${props => desktopStyle`
     flex-direction: row;
     justify-content: space-between;
     font-size: 3rem;
     padding: 0 ${props.theme.nav.padding.sides.desktop} 0;
+    margin: 0;
   `}
 `
 

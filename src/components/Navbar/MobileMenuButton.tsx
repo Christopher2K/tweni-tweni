@@ -11,7 +11,6 @@ const Button = styled.button<{ menuIsOpen: boolean }>`
   height: ${props => props.theme.nav.itemSize.mobile};
   box-sizing: border-box;
   font-size: ${props => props.theme.nav.itemSize.mobile};
-  height: ${props => props.theme.nav.itemSize.mobile};
   padding: 0;
   color: ${props => props.theme.colors.black};
   ${props =>

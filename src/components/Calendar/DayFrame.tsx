@@ -28,7 +28,7 @@ const Root = styled.div<StyleProps>`
   width: 100%;
   border-bottom: var(--border-def);
 
-  transition: 500ms width linear, 500ms height linear;
+  transition: 200ms width linear, 200ms height linear;
 
   ${props => desktopStyle`
     flex-direction: row;
@@ -64,7 +64,9 @@ const Root = styled.div<StyleProps>`
   `}
 `
 
-const Informations = styled.div``
+const Informations = styled.div`
+  width: 100%;
+`
 
 const FixedSizeContainer = styled.div<StyleProps>`
   display: flex;
@@ -106,9 +108,9 @@ const Top = styled.div`
 
 const Day = styled.span<StyleProps>`
   font-size: 5rem;
-  line-height: 5rem;
+  line-height: 50px;
   letter-spacing: -1.5px;
-  transition: 500ms font-size linear;
+  transition: 200ms font-size linear;
 
   ${props => desktopStyle`
     ${
@@ -147,23 +149,25 @@ const Metadata = styled.div`
   flex-shrink: 0;
 
   h1 {
+    width: 100%;
     font-weight: 400;
     font-size: 1.6rem;
-    line-height: 2.08rem;
+    line-height: 20.8px;
+    margin-bottom: 0.4rem;
 
     ${desktopStyle`
-      line-height: 2.08rem;
+      line-height: 20.8px;
       margin-bottom: 2rem;
     `}
   }
 
   p {
     text-transform: uppercase;
-    font-size: 1rem;
-    line-height: 2.08rem;
+    font-size: 1.2rem;
+    line-height: 20.8px;
 
     ${desktopStyle`
-      line-height: 1.65rem;
+      line-height: 16.5px;
     `}
   }
 `
@@ -190,13 +194,13 @@ const DesktopHide = styled(DesktopHideIcon)`
 const Description = styled.p<StyleProps>`
   font-family: ${props => props.theme.fonts.rubik};
   font-size: 1.8rem;
-  line-height: 2.52rem;
+  line-height: 25.2px;
   box-sizing: border-box;
 
   ${props => desktopStyle`
     padding: 0 2.8rem 0 2.8rem;
     font-size: 1.3rem;
-    line-height: 1.82rem;
+    line-height: 18.2px;
     width: ${props.frameSize}px;
   `}
 `

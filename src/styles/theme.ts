@@ -13,11 +13,11 @@ export const theme = {
     lightGrey: '#BBBBBB',
   },
   nav: {
-    animationDuration: '250ms',
+    animationDuration: '150ms',
     padding: {
       top: {
         desktop: '3.5rem',
-        mobile: '6rem',
+        mobile: '4rem',
       },
       bottom: {
         desktop: '3.5rem',

@@ -26,7 +26,7 @@ interface PageContainerProps {
   marginTop: number
 }
 const PageContainer = styled.main<PageContainerProps>`
-  display: 100%;
+  width: 100%;
   flex: 1;
   margin-top: ${props => (props.isHomepage ? props.marginTop : 0)}px;
 `

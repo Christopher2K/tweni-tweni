@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useContext,
   createContext,
+  useCallback,
 } from 'react'
 import Prismic from 'prismic-javascript'
 
@@ -18,14 +19,18 @@ interface WebsiteData {
   articles?: Model.Article[]
   mixs?: Model.Mix[]
   inspirations?: Model.Inspiration[]
+
+  getArticleBySlug: (id: string) => Promise<Model.Article>
 }
 
-const initialData: WebsiteData = {}
-
-const WebsiteDataContext = createContext<WebsiteData>(initialData)
+const WebsiteDataContext = createContext<WebsiteData | undefined>(undefined)
 
 export function useWebsiteData(): WebsiteData {
   const data = useContext(WebsiteDataContext)
+  if (data === undefined) {
+    throw new Error('Must be used inside WebsiteDataContext')
+  }
+
   return data
 }
 
@@ -86,12 +91,22 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
       .catch(console.error)
   }, [])
 
+  const getArticleBySlug = useCallback(
+    function getArticleBySlug(slug: string) {
+      return prismic
+        .queryFirst(Prismic.Predicates.at('document.type', 'article'))
+        .then(fromPrismicDataToArticleModel)
+    },
+    [prismic],
+  )
+
   return (
     <WebsiteDataContext.Provider
       value={{
         articles,
         mixs,
         inspirations,
+        getArticleBySlug,
       }}
     >
       {children}

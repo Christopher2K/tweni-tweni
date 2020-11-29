@@ -22,6 +22,7 @@ declare namespace Model {
     subtitle: string
     date: string
     thumbnailPhoto: string
+    coverPhoto: string
     author: string
     categories: string[]
     content: string

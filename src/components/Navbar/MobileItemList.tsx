@@ -16,6 +16,7 @@ const containerStyle = css`
 
 const Root = styled.div`
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -66,21 +67,22 @@ const StyledLogo = styled(Logo)`
 `
 
 const Item = styled(NavLink)`
-  line-height: 4.4rem;
+  line-height: 44px;
   font-size: 3.1rem;
   color: inherit;
   font-weight: 400;
   letter-spacing: 0.03em;
+  margin-bottom: 0.8rem;
 
   &.active {
-    text-decoration: underline;
+    border-bottom: 1px solid ${props => props.theme.colors.white};
   }
 `
 
 const SocialLink = styled.a`
   font-family: ${props => props.theme.fonts.sneak};
   font-size: 1.3rem;
-  line-height: 1.82rem;
+  line-height: 18.2px;
   color: inherit;
 
   &:hover {

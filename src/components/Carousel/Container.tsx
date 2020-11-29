@@ -75,11 +75,13 @@ const CarouselPhoto = styled.div`
 
 const Caption = styled.p`
   font-family: ${props => props.theme.fonts.sneak};
-  font-size: 0.75rem;
-  line-height: 1.125rem;
+  font-size: 1.2rem;
+  line-height: 14px;
+  width: 80%;
 
   ${desktopStyle`
     flex-shrink: 0;
+    width: 100%;
   `}
 `
 

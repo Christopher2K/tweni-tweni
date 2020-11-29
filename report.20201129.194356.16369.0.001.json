@@ -1,0 +1,670 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20201129.194356.16369.0.001.json",
+    "dumpEventTime": "2020-11-29T19:43:56Z",
+    "dumpEventTimeStamp": "1606675436164",
+    "processId": 16369,
+    "cwd": "/Users/christopher/dev/tweni-tweni",
+    "commandLine": [
+      "/Users/christopher/.nvm/versions/node/v12.10.0/bin/node",
+      "/Users/christopher/dev/tweni-tweni/node_modules/@craco/craco/scripts/start.js"
+    ],
+    "nodejsVersion": "v12.10.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "darwin",
+    "componentVersions": {
+      "node": "12.10.0",
+      "v8": "7.6.303.29-node.16",
+      "uv": "1.31.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.10.0/node-v12.10.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.10.0/node-v12.10.0.tar.gz"
+    },
+    "osName": "Darwin",
+    "osRelease": "20.1.0",
+    "osVersion": "Darwin Kernel Version 20.1.0: Sat Oct 31 00:07:11 PDT 2020; root:xnu-7195.50.7~2/RELEASE_X86_64",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 14234850,
+        "nice": 0,
+        "sys": 7987780,
+        "idle": 55088830,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 1003280,
+        "nice": 0,
+        "sys": 915600,
+        "idle": 75392210,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 14619980,
+        "nice": 0,
+        "sys": 5748460,
+        "idle": 56942650,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 943820,
+        "nice": 0,
+        "sys": 734720,
+        "idle": 75632550,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 11661880,
+        "nice": 0,
+        "sys": 4001200,
+        "idle": 61648010,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 983410,
+        "nice": 0,
+        "sys": 671650,
+        "idle": 75656030,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 10594470,
+        "nice": 0,
+        "sys": 3323070,
+        "idle": 63393540,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+        "speed": 2000,
+        "user": 972790,
+        "nice": 0,
+        "sys": 600600,
+        "idle": 75737710,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::1",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 1
+      },
+      {
+        "name": "en8",
+        "internal": false,
+        "mac": "ac:de:48:00:11:22",
+        "address": "fe80::aede:48ff:fe00:1122",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 4
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "3c:22:fb:6a:16:10",
+        "address": "fe80::1c22:6c64:798d:6b02",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 6
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "3c:22:fb:6a:16:10",
+        "address": "192.168.1.85",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "awdl0",
+        "internal": false,
+        "mac": "a2:70:45:30:84:40",
+        "address": "fe80::a070:45ff:fe30:8440",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 13
+      },
+      {
+        "name": "llw0",
+        "internal": false,
+        "mac": "a2:70:45:30:84:40",
+        "address": "fe80::a070:45ff:fe30:8440",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 14
+      },
+      {
+        "name": "utun0",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::133:450b:90e4:8752",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 15
+      },
+      {
+        "name": "utun1",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::3027:28f:d48b:93b8",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 16
+      }
+    ],
+    "host": "MBP-de-N"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00000001001461d0",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, v8::Local<v8::String>) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000100078d95",
+      "symbol": "node::OnFatalError(char const*, char const*) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x000000010016e8d7",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x000000010016e873",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002f2605",
+      "symbol": "v8::internal::Heap::FatalProcessOutOfMemory(char const*) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002f3d2d",
+      "symbol": "v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002f0ae6",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002eea3c",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002fa114",
+      "symbol": "v8::internal::Heap::AllocateRawWithLightRetry(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002fa18f",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002c8737",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationType) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001005e8f67",
+      "symbol": "v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001009288f9",
+      "symbol": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit [/Users/christopher/.nvm/versions/node/v12.10.0/bin/node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2173751296,
+    "totalCommittedMemory": 2170495776,
+    "usedMemory": 2063504568,
+    "availableMemory": 61559328,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 31744,
+        "capacity": 261832,
+        "used": 31432,
+        "available": 230400
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 31457520,
+        "capacity": 16757248,
+        "used": 700976,
+        "available": 16056272
+      },
+      "old_space": {
+        "memorySize": 1947316224,
+        "committedMemory": 1946797440,
+        "capacity": 1880553880,
+        "used": 1876102472,
+        "available": 4451408
+      },
+      "code_space": {
+        "memorySize": 12484608,
+        "committedMemory": 12076864,
+        "capacity": 11037888,
+        "used": 11037888,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 6033408,
+        "committedMemory": 6031728,
+        "capacity": 3734400,
+        "used": 3734400,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 173477888,
+        "committedMemory": 173477888,
+        "capacity": 171346840,
+        "used": 171346840,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 550560,
+        "used": 550560,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16757248,
+        "used": 0,
+        "available": 16757248
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 559.762,
+    "kernelCpuSeconds": 30.081,
+    "cpuConsumptionPercent": 8.73582,
+    "maxRss": 2282057891840,
+    "pageFaults": {
+      "IORequired": 25,
+      "IONotRequired": 4696475
+    },
+    "fsActivity": {
+      "reads": 0,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "npm_package_dependencies_prismic_reactjs": "^1.3.3",
+    "npm_package_devDependencies_prettier": "2.1.2",
+    "npm_package_scripts_prettier": "prettier --check \"src/**/*.{js,json,md,ts,tsx}\"",
+    "TERM_PROGRAM": "vscode",
+    "NODE": "/Users/christopher/.nvm/versions/node/v12.10.0/bin/node",
+    "npm_config_version_git_tag": "true",
+    "ANDROID_HOME": "/Users/christopher/Library/Android/sdk",
+    "NVM_CD_FLAGS": "-q",
+    "PYENV_ROOT": "/Users/christopher/.pyenv",
+    "INIT_CWD": "/Users/christopher/dev/tweni-tweni",
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/zsh",
+    "npm_package_devDependencies__craco_craco": "5.8.0",
+    "TMPDIR": "/var/folders/w4/sfq9d0851fv_zwcstckl__gc0000gn/T/",
+    "npm_config_init_license": "MIT",
+    "npm_package_scripts_eslint": "eslint . --cache --cache-location \".caches/eslint/\" --ext js,ts,tsx --max-warnings 0",
+    "TERM_PROGRAM_VERSION": "1.51.1",
+    "ORIGINAL_XDG_CURRENT_DESKTOP": "undefined",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "npm_package_private": "true",
+    "npm_package_dependencies_react_dom": "17.0.1",
+    "ZSH": "/Users/christopher/.oh-my-zsh",
+    "npm_package_devDependencies__emotion_styled": "11.0.0",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_dependencies_web_vitals": "0.2.4",
+    "npm_package_description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+    "NVM_DIR": "/Users/christopher/.nvm",
+    "USER": "christopher",
+    "npm_package_dependencies__testing_library_user_event": "12.1.10",
+    "npm_package_devDependencies__emotion_babel_plugin": "11.0.0",
+    "COMMAND_MODE": "unix2003",
+    "npm_package_browserslist_development_1": "last 1 firefox version",
+    "npm_package_browserslist_development_0": "last 1 chrome version",
+    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.kM0iabByW7/Listeners",
+    "npm_package_browserslist_development_2": "last 1 safari version",
+    "npm_package_devDependencies_eslint": "7",
+    "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x0",
+    "npm_package_devDependencies__typescript_eslint_eslint_plugin": "4",
+    "npm_package_husky_hooks_pre_commit": "yarn preflight",
+    "npm_execpath": "/Users/christopher/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/bin/yarn.js",
+    "PAGER": "less",
+    "LSCOLORS": "Gxfxcxdxbxegedabagacad",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\"],\"original\":[\"start\"]}",
+    "PATH": "/var/folders/w4/sfq9d0851fv_zwcstckl__gc0000gn/T/yarn--1606668683443-0.7018276075394083:/Users/christopher/dev/tweni-tweni/node_modules/.bin:/Users/christopher/.config/yarn/link/node_modules/.bin:/Users/christopher/.nvm/versions/node/v12.10.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/christopher/.nvm/versions/node/v12.10.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/christopher/.nvm/versions/node/v12.10.0/bin/node_modules/npm/bin/node-gyp-bin:/Users/christopher/Library/GoogleCloudPlatform/google-cloud-sdk/bin:/usr/local/opt/gettext/bin:/Users/christopher/.nvm/versions/node/v12.10.0/bin:/Users/christopher/.pyenv/shims:/Users/christopher/.pyenv/bin:/Users/christopher/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Apple/usr/bin:/Users/christopher/Library/GoogleCloudPlatform/google-cloud-sdk/bin:/usr/local/opt/gettext/bin:/Users/christopher/.nvm/versions/node/v12.10.0/bin:/Users/christopher/.pyenv/shims:/Users/christopher/.pyenv/bin:/Users/christopher/bin:/Users/christopher/Library/Android/sdk/emulator:/Users/christopher/Library/Android/sdk/tools:/Users/christopher/Library/Android/sdk/tools/bin:/Users/christopher/Library/Android/sdk/platform-tools:/Users/christopher/.pub-cache/bin:/Users/christopher/dev/tools/flutter/bin:/Users/christopher/Library/Android/sdk/emulator:/Users/christopher/Library/Android/sdk/tools:/Users/christopher/Library/Android/sdk/tools/bin:/Users/christopher/Library/Android/sdk/platform-tools:/Users/christopher/.pub-cache/bin:/Users/christopher/dev/tools/flutter/bin",
+    "_": "/Users/christopher/dev/tweni-tweni/node_modules/.bin/craco",
+    "LaunchInstanceID": "D32B1A8F-83A9-4859-A84D-EAAE9B61A28A",
+    "npm_package_dependencies__types_jest": "26.0.15",
+    "npm_package_dependencies_typescript": "4.0.3",
+    "npm_package_browserslist_production_1": "not dead",
+    "__CFBundleIdentifier": "com.microsoft.VSCode",
+    "npm_package_browserslist_production_0": ">0.2%",
+    "npm_package_devDependencies_eslint_plugin_standard": "4",
+    "PWD": "/Users/christopher/dev/tweni-tweni",
+    "JAVA_HOME": "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home",
+    "npm_package_dependencies_date_fns": "^2.16.1",
+    "npm_package_scripts_preflight": "yarn prettier && yarn tsc && yarn eslint",
+    "npm_package_browserslist_production_2": "not op_mini all",
+    "npm_package_devDependencies__types_react_router_dom": "5.1.6",
+    "npm_package_devDependencies_eslint_config_standard_with_typescript": "19.0.1",
+    "npm_lifecycle_event": "start",
+    "npm_package_name": "tweni-tweni",
+    "LANG": "en_GB.UTF-8",
+    "npm_package_devDependencies_eslint_plugin_import": "2",
+    "npm_config_version_commit_hooks": "true",
+    "npm_package_scripts_start": "craco start",
+    "npm_package_scripts_build": "craco build",
+    "npm_package_dependencies_react_router_dom": "5.2.0",
+    "XPC_FLAGS": "0x0",
+    "npm_config_bin_links": "true",
+    "npm_package_dependencies_prismic_dom": "^2.2.4",
+    "npm_package_scripts_eslint_write": "yarn eslint --fix",
+    "npm_package_devDependencies__types_react_router": "5.1.8",
+    "npm_package_devDependencies_eslint_config_prettier": "6.15.0",
+    "npm_package_devDependencies_eslint_plugin_node": "11",
+    "npm_package_version": "0.1.0",
+    "npm_package_dependencies__emotion_react": "11.0.0",
+    "XPC_SERVICE_NAME": "0",
+    "npm_package_devDependencies__types_prismic_dom": "^2.1.1",
+    "PYENV_SHELL": "zsh",
+    "SHLVL": "2",
+    "HOME": "/Users/christopher",
+    "npm_package_scripts_test": "craco test",
+    "VSCODE_GIT_ASKPASS_MAIN": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js",
+    "npm_config_strict_ssl": "true",
+    "npm_config_save_prefix": "^",
+    "npm_package_scripts_prettier_write": "prettier --write \"src/**/*.{js,json,md,ts,tsx}\"",
+    "npm_config_version_git_message": "v%s",
+    "npm_package_dependencies__testing_library_jest_dom": "5.11.4",
+    "npm_package_devDependencies_husky": "4.3.0",
+    "npm_package_devDependencies_eslint_plugin_promise": "4",
+    "npm_package_dependencies__types_node": "12.0.0",
+    "npm_package_dependencies_react_scripts": "4.0.0",
+    "YARN_WRAP_OUTPUT": "false",
+    "LESS": "-R",
+    "LOGNAME": "christopher",
+    "npm_lifecycle_script": "craco start",
+    "VSCODE_GIT_IPC_HANDLE": "/var/folders/w4/sfq9d0851fv_zwcstckl__gc0000gn/T/vscode-git-75b9157c64.sock",
+    "npm_package_dependencies_react": "17.0.1",
+    "npm_package_eslintConfig_extends_1": "react-app/jest",
+    "npm_package_dependencies__types_react": "16.9.53",
+    "npm_package_eslintConfig_extends_0": "react-app",
+    "NVM_BIN": "/Users/christopher/.nvm/versions/node/v12.10.0/bin",
+    "npm_config_user_agent": "yarn/1.17.3 npm/? node/v12.10.0 darwin x64",
+    "npm_config_ignore_scripts": "",
+    "npm_config_version_git_sign": "",
+    "npm_package_dependencies__testing_library_react": "11.1.0",
+    "VSCODE_GIT_ASKPASS_NODE": "/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)",
+    "GIT_ASKPASS": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh",
+    "npm_config_ignore_optional": "",
+    "npm_config_init_version": "1.0.0",
+    "npm_package_scripts_eject": "react-scripts eject",
+    "DEV": "/Users/christopher/dev",
+    "SECURITYSESSIONID": "186a9",
+    "npm_package_dependencies__types_react_dom": "16.9.8",
+    "npm_package_dependencies_prismic_javascript": "^3.0.2",
+    "npm_package_dependencies_react_router": "5.2.0",
+    "npm_config_version_tag_prefix": "v",
+    "npm_package_devDependencies_eslint_plugin_react": "7.21.5",
+    "npm_package_devDependencies_eslint_webpack_plugin": "2.3.0",
+    "npm_node_execpath": "/Users/christopher/.nvm/versions/node/v12.10.0/bin/node",
+    "COLORTERM": "truecolor",
+    "NODE_ENV": "development",
+    "NODE_PATH": "",
+    "BABEL_ENV": "development",
+    "WEBPACK_DEV_SERVER": "true"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048575,
+      "hard": "unlimited"
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": 67104768
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 2784,
+      "hard": 4176
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "/Users/christopher/.nvm/versions/node/v12.10.0/bin/node",
+    "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+    "/usr/lib/libSystem.B.dylib",
+    "/usr/lib/libc++.1.dylib",
+    "/usr/lib/libobjc.A.dylib",
+    "/usr/lib/liboah.dylib",
+    "/usr/lib/libfakelink.dylib",
+    "/usr/lib/libicucore.A.dylib",
+    "/System/Library/PrivateFrameworks/SoftLinking.framework/Versions/A/SoftLinking",
+    "/usr/lib/libc++abi.dylib",
+    "/usr/lib/system/libcache.dylib",
+    "/usr/lib/system/libcommonCrypto.dylib",
+    "/usr/lib/system/libcompiler_rt.dylib",
+    "/usr/lib/system/libcopyfile.dylib",
+    "/usr/lib/system/libcorecrypto.dylib",
+    "/usr/lib/system/libdispatch.dylib",
+    "/usr/lib/system/libdyld.dylib",
+    "/usr/lib/system/libkeymgr.dylib",
+    "/usr/lib/system/liblaunch.dylib",
+    "/usr/lib/system/libmacho.dylib",
+    "/usr/lib/system/libquarantine.dylib",
+    "/usr/lib/system/libremovefile.dylib",
+    "/usr/lib/system/libsystem_asl.dylib",
+    "/usr/lib/system/libsystem_blocks.dylib",
+    "/usr/lib/system/libsystem_c.dylib",
+    "/usr/lib/system/libsystem_collections.dylib",
+    "/usr/lib/system/libsystem_configuration.dylib",
+    "/usr/lib/system/libsystem_containermanager.dylib",
+    "/usr/lib/system/libsystem_coreservices.dylib",
+    "/usr/lib/system/libsystem_darwin.dylib",
+    "/usr/lib/system/libsystem_dnssd.dylib",
+    "/usr/lib/system/libsystem_featureflags.dylib",
+    "/usr/lib/system/libsystem_info.dylib",
+    "/usr/lib/system/libsystem_m.dylib",
+    "/usr/lib/system/libsystem_malloc.dylib",
+    "/usr/lib/system/libsystem_networkextension.dylib",
+    "/usr/lib/system/libsystem_notify.dylib",
+    "/usr/lib/system/libsystem_product_info_filter.dylib",
+    "/usr/lib/system/libsystem_sandbox.dylib",
+    "/usr/lib/system/libsystem_secinit.dylib",
+    "/usr/lib/system/libsystem_kernel.dylib",
+    "/usr/lib/system/libsystem_platform.dylib",
+    "/usr/lib/system/libsystem_pthread.dylib",
+    "/usr/lib/system/libsystem_symptoms.dylib",
+    "/usr/lib/system/libsystem_trace.dylib",
+    "/usr/lib/system/libunwind.dylib",
+    "/usr/lib/system/libxpc.dylib",
+    "/Users/christopher/dev/tweni-tweni/node_modules/chokidar/node_modules/fsevents/build/Release/fse.node",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices",
+    "/System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/FSEvents",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices",
+    "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SharedFileList.framework/Versions/A/SharedFileList",
+    "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit",
+    "/System/Library/Frameworks/Security.framework/Versions/A/Security",
+    "/System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration",
+    "/usr/lib/libapple_nghttp2.dylib",
+    "/usr/lib/libnetwork.dylib",
+    "/usr/lib/libsqlite3.dylib",
+    "/usr/lib/libz.1.dylib",
+    "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+    "/usr/lib/libDiagnosticMessagesClient.dylib",
+    "/usr/lib/libenergytrace.dylib",
+    "/usr/lib/libbsm.0.dylib",
+    "/usr/lib/system/libkxld.dylib",
+    "/usr/lib/libMobileGestalt.dylib",
+    "/System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression",
+    "/usr/lib/libcoretls.dylib",
+    "/usr/lib/libcoretls_cfhelpers.dylib",
+    "/usr/lib/libpam.2.dylib",
+    "/usr/lib/libxar.1.dylib",
+    "/System/Library/PrivateFrameworks/CoreAutoLayout.framework/Versions/A/CoreAutoLayout",
+    "/usr/lib/libcompression.dylib",
+    "/System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration",
+    "/usr/lib/libarchive.2.dylib",
+    "/usr/lib/libxml2.2.dylib",
+    "/usr/lib/liblangid.dylib",
+    "/usr/lib/libCRFSuite.dylib",
+    "/usr/lib/libpcap.A.dylib",
+    "/usr/lib/libdns_services.dylib",
+    "/usr/lib/liblzma.5.dylib",
+    "/usr/lib/libbz2.1.0.dylib",
+    "/usr/lib/libiconv.2.dylib",
+    "/usr/lib/libcharset.1.dylib",
+    "/System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/AppleSystemInfo",
+    "/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/Versions/A/IOMobileFramebuffer",
+    "/System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface",
+    "/usr/lib/libCheckFix.dylib",
+    "/System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC",
+    "/System/Library/PrivateFrameworks/CoreNLP.framework/Versions/A/CoreNLP",
+    "/System/Library/PrivateFrameworks/MetadataUtilities.framework/Versions/A/MetadataUtilities",
+    "/usr/lib/libmecabra.dylib",
+    "/System/Library/Frameworks/MLCompute.framework/Versions/A/MLCompute",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate",
+    "/usr/lib/libmecab.dylib",
+    "/usr/lib/libgermantok.dylib",
+    "/usr/lib/libThaiTokenizer.dylib",
+    "/usr/lib/libChineseTokenizer.dylib",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/MetalPerformanceShaders",
+    "/System/Library/Frameworks/Metal.framework/Versions/A/Metal",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLinearAlgebra.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparseBLAS.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libQuadrature.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBNNS.dylib",
+    "/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparse.dylib",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSCore.framework/Versions/A/MPSCore",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSImage.framework/Versions/A/MPSImage",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSNeuralNetwork.framework/Versions/A/MPSNeuralNetwork",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSMatrix.framework/Versions/A/MPSMatrix",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSRayIntersector.framework/Versions/A/MPSRayIntersector",
+    "/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSNDArray.framework/Versions/A/MPSNDArray",
+    "/System/Library/PrivateFrameworks/MetalTools.framework/Versions/A/MetalTools",
+    "/System/Library/PrivateFrameworks/AggregateDictionary.framework/Versions/A/AggregateDictionary",
+    "/System/Library/PrivateFrameworks/CoreAnalytics.framework/Versions/A/CoreAnalytics",
+    "/System/Library/PrivateFrameworks/AppleSauce.framework/Versions/A/AppleSauce",
+    "/System/Library/PrivateFrameworks/IOAccelerator.framework/Versions/A/IOAccelerator",
+    "/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreFSCache.dylib",
+    "/System/Library/PrivateFrameworks/LanguageModeling.framework/Versions/A/LanguageModeling",
+    "/System/Library/PrivateFrameworks/CoreEmoji.framework/Versions/A/CoreEmoji",
+    "/System/Library/PrivateFrameworks/LinguisticData.framework/Versions/A/LinguisticData",
+    "/System/Library/PrivateFrameworks/Lexicon.framework/Versions/A/Lexicon",
+    "/usr/lib/libcmph.dylib",
+    "/System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory",
+    "/System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory",
+    "/System/Library/PrivateFrameworks/APFS.framework/Versions/A/APFS",
+    "/System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation",
+    "/usr/lib/libutil.dylib",
+    "/usr/lib/libapp_launch_measurement.dylib",
+    "/System/Library/PrivateFrameworks/CoreServicesStore.framework/Versions/A/CoreServicesStore",
+    "/System/Library/Frameworks/ServiceManagement.framework/Versions/A/ServiceManagement",
+    "/usr/lib/libxslt.1.dylib",
+    "/System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Versions/A/BackgroundTaskManagement",
+    "/Users/christopher/dev/tweni-tweni/node_modules/fsevents/fsevents.node"
+  ]
+}

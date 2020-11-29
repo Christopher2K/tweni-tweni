@@ -34,8 +34,12 @@ const StyledLink = styled(NavLink)`
 
   &.active {
     display: inline-block;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid ${props => props.theme.colors.black};
+
+    ${desktopStyle`
+      padding-bottom: 1rem;
+    `}
   }
 `
 

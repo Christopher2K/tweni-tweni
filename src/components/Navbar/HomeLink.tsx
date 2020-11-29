@@ -50,10 +50,16 @@ const Root = styled(NavLink)<{ activeScaleFactor: number }>`
     ${Logo} {
       top: calc(
         ${({ theme }) =>
-          `(${theme.nav.padding.top.mobile} + ${theme.nav.padding.bottom.mobile}) + ${theme.nav.itemSize.mobile}`}
+          `(${theme.nav.padding.top.mobile} + ${theme.nav.padding.bottom.mobile}) + ${theme.nav.itemSize.mobile} + 10px`}
       );
       transform: translate(-50%, -50%)
         scale(${props => props.activeScaleFactor});
+
+      ${({ theme }) => desktopStyle`
+        top: calc(
+          ${`(${theme.nav.padding.top.desktop} + ${theme.nav.padding.bottom.desktop}) + ${theme.nav.itemSize.desktop} + 13px`}
+        );
+      `}
 
       transition: top ease-out var(--animation-length),
         transform ease-out var(--animation-length);

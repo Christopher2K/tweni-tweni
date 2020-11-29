@@ -7,10 +7,6 @@ import { css, Global } from '@emotion/react'
 const Root = styled.div`
   --border-def: 1px solid ${props => props.theme.colors.black};
   width: 100%;
-  margin-top: 2rem;
-  ${desktopStyle`
-    margin-top: 12rem;
-  `}
 `
 
 const CurrentMonth = styled.div`
@@ -39,7 +35,7 @@ const CurrentMonth = styled.div`
     width: 100%;
 
     font-size: 4rem;
-    line-height: 4rem;
+    line-height: 40px;
 
     ${props => desktopStyle`
       font-size: 12rem;

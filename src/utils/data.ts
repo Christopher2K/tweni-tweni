@@ -12,6 +12,7 @@ export function fromPrismicDataToArticleModel(doc: Document): Model.Article {
     date: format(parse(data.date, 'yyyy-MM-dd', new Date()), 'dd.MM.yy'),
     author: data.author,
     thumbnailPhoto: data.thumbnail_photo.url,
+    coverPhoto: data.cover_photo.url,
     content: PrismicDOM.RichText.asHtml(data.content),
     categories: (data.categories as any[]).map(c => c.category),
   }
