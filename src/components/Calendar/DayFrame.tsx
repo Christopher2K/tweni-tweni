@@ -64,8 +64,28 @@ const Root = styled.div<StyleProps>`
   `}
 `
 
-const Informations = styled.div`
+const Informations = styled.div<StyleProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
   width: 100%;
+  max-width: ${props => props.frameSize}px;
+
+  ${props => desktopStyle`
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+
+    ${
+      props.isInActiveRow &&
+      !props.isActiveDay &&
+      css`
+        width: 5rem;
+      `
+    }
+  `}
 `
 
 const FixedSizeContainer = styled.div<StyleProps>`
@@ -75,22 +95,22 @@ const FixedSizeContainer = styled.div<StyleProps>`
   align-items: flex-start;
 
   width: 100%;
-  max-width: ${props => props.frameSize}px;
   box-sizing: border-box;
   padding: 2rem ${props => props.theme.nav.padding.sides.mobile} 5rem;
 
   ${props => desktopStyle`
     justify-content: space-between;
     align-items: flex-start;
-    height: 26rem;
+    height: 100%;
     padding: 2.8rem 2.8rem 2rem 2.8rem;
     width: 100%;
+    height: 26rem;
 
     ${
       props.isInActiveRow &&
       !props.isActiveDay &&
       css`
-        width: 5rem;
+        width: 100%;
         padding: 2.5rem 0 0 1rem;
       `
     }
@@ -147,6 +167,8 @@ const Bottom = styled.div<StyleProps>`
 const Metadata = styled.div`
   width: 60%;
   flex-shrink: 0;
+
+  ${desktopStyle`width: 100%;`}
 
   h1 {
     width: 100%;
@@ -310,7 +332,7 @@ export const DayFrame: FC<DayFrameProps> = ({
       {...styleProps}
     >
       {isActiveDay && <DesktopHide onClick={onCloseClick} />}
-      <Informations>
+      <Informations {...styleProps}>
         <FixedSizeContainer {...styleProps}>
           <Top>
             <Day {...styleProps}>{dayNumberText}</Day>

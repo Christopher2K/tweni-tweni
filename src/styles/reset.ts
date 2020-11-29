@@ -127,4 +127,8 @@ export const reset = css`
   a {
     text-decoration: none;
   }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+  }
 `
