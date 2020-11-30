@@ -24,7 +24,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: Get commit message
-         run: export COMMIT_MSG=$(git log -1 --pretty=format:"%s"
+         run: export COMMIT_MSG=$(git log -1 --pretty=format:"%s")
        - uses: FranzDiebold/github-env-vars-action@v1.3.0
        - name: Netlify Deploy
          uses: netlify/actions/cli@master       
