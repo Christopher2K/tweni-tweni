@@ -19,8 +19,6 @@ jobs:
         run: yarn preflight
       - name: Build code
         run: yarn build
-      - name: Get commit message
-        run: export COMMIT_MSG=$(git log -1 --pretty=format:"%s")
       - uses: FranzDiebold/github-env-vars-action@v1.3.0
       - name: Get Netlify Cli
         run: yarn global add netlify-cli
@@ -28,4 +26,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: netlify deploy --dir=build --message "$GITHUB_SHA_SHORT $COMMIT_MSG" --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --prod
+        run: netlify deploy --dir=build --message "$GITHUB_SHA_SHORT $(git log -1 --pretty=format:"%s")" --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --prod
