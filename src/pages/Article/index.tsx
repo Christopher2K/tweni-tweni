@@ -1,9 +1,29 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { Helmet } from 'react-helmet'
 
 import { useWebsiteData } from 'hooks/useWebsiteData'
 import { useParams } from 'react-router'
 import { desktopStyle } from 'styles/responsive'
+import linkedInIcon from 'assets/icons/linkedin.png'
+import mailIcon from 'assets/icons/mail.png'
+import facebookIcon from 'assets/icons/facebook.png'
+import twitterIcon from 'assets/icons/twitter.png'
+
+const littleSectionStyle = css`
+  box-sizing: border-box;
+  font-size: 1rem;
+  line-height: 15px;
+  text-transform: uppercase;
+  margin-bottom: 5rem;
+
+  ${desktopStyle`
+    padding: 0 8.3%;
+    font-size: 1.1rem;
+    line-height: 17px;
+  `}
+`
 
 const Root = styled.div`
   width: 100%;
@@ -41,17 +61,7 @@ const Title = styled.h1`
 `
 
 const Metadata = styled.p`
-  box-sizing: border-box;
-  font-size: 1rem;
-  line-height: 15px;
-  text-transform: uppercase;
-  margin-bottom: 5rem;
-
-  ${desktopStyle`
-    padding: 0 8.3%;
-    font-size: 1.1rem;
-    line-height: 17px;
-  `}
+  ${littleSectionStyle};
 `
 
 const Content = styled.div`
@@ -125,18 +135,26 @@ const Content = styled.div`
 `
 
 const Footer = styled.div`
-  padding-top: 20px;
   width: 100%;
+  padding-top: 2rem;
   border-top: 1px solid ${props => props.theme.colors.black};
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 
-  ${desktopStyle`
-    width: 50%;
+  ${props => desktopStyle`
+    width: calc(50% - ${props.theme.nav.padding.sides.desktop});
     margin-left: 50%;
+    margin-bottom: 18rem;
   `};
+`
+
+const FooterHeading = styled.p`
+  ${littleSectionStyle}
+  margin-bottom: 1rem;
+  padding: 0;
+  ${desktopStyle`padding: 0;`}
 `
 
 const SocialContainer = styled.div`
@@ -150,15 +168,14 @@ const Credits = styled.div`
 const Socials = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
   margin-top: 0.5rem;
 
   a {
-    padding: 1.5rem;
-    &:first-of-type {
-      margin: 15px;
-    }
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 `
 
@@ -167,16 +184,71 @@ export const Article: FC = () => {
   const { getArticleBySlug } = useWebsiteData()
   const [article, setArticle] = useState<Model.Article>()
 
-  console.log(article?.content)
-
   useEffect(() => {
     getArticleBySlug(id).then(setArticle).catch(console.error)
   }, [])
 
+  const clearSharingUrl = 'https://twenitweni.fr' + window.location.pathname
+  const sharingUrl = encodeURI(clearSharingUrl)
+  const clearSharingText = article
+    ? `${article?.title} par ${article?.author}`
+    : 'Article sur Tweni Tweni'
+  const sharingText = encodeURI(clearSharingText)
+
+  const shareToTwitter = useCallback(function shareToTwitter(
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) {
+    event.preventDefault()
+    const elm = event.currentTarget as HTMLAnchorElement
+    window.open(
+      elm.href,
+      'Partager depuis Tweni Tweni',
+      'left=20,top=20,width=600,height=300,toolbar=0,resizable=1',
+    )
+    return false
+  },
+  [])
+
+  const shareToLinkedIn = useCallback(function shareToTwitter(
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) {
+    event.preventDefault()
+    const elm = event.currentTarget as HTMLAnchorElement
+    window.open(
+      elm.href,
+      'Partager depuis Tweni Tweni',
+      'left=20,top=20,width=600,height=700,toolbar=0,resizable=1',
+    )
+    return false
+  },
+  [])
+
+  const shareToFacebook = useCallback(function shareToFacebook(
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) {
+    event.preventDefault()
+    const elm = event.currentTarget as HTMLAnchorElement
+    window.open(
+      elm.href,
+      'Partager depuis Tweni Tweni',
+      'left=20,top=20,width=600,height=700,toolbar=0,resizable=1',
+    )
+  },
+  [])
+
   return (
     <Root>
+      <Helmet>
+        <title>{clearSharingText}</title>
+      </Helmet>
       {article && (
         <>
+          <Helmet>
+            <meta property="og:url" content={clearSharingUrl} />
+            <meta property="og:image" content={article.coverPhoto} />
+            <meta property="og:title" content={article.title} />
+            <meta property="og:description" content="" />
+          </Helmet>
           <CoverPhoto src={article.coverPhoto} alt={article.title} />
           <Title>{article.title}</Title>
           <Metadata>
@@ -185,11 +257,35 @@ export const Article: FC = () => {
           <Content dangerouslySetInnerHTML={{ __html: article?.content }} />
           <Footer>
             <Credits>
-              <Metadata>{article.author}</Metadata>
+              <FooterHeading>{article.author}</FooterHeading>
             </Credits>
             <SocialContainer>
-              <Metadata>partager</Metadata>
-              <Socials></Socials>
+              <FooterHeading>partager</FooterHeading>
+              <Socials>
+                <a
+                  href={`http://www.facebook.com/sharer.php?s=100&amp;p[title]=${sharingText}&amp;p[url]=${sharingUrl}&amp;p[images[0]=${article.thumbnailPhoto}`}
+                  onClick={shareToFacebook}
+                >
+                  <img src={facebookIcon} alt="Facebook" />
+                </a>
+                <a
+                  href={`https://twitter.com/intent/tweet?url=${sharingUrl}&text=${sharingText}`}
+                  onClick={shareToTwitter}
+                >
+                  <img src={twitterIcon} alt="Twitter" />
+                </a>
+                <a
+                  href={`mailto:?body=${clearSharingUrl}&subject=${clearSharingText}`}
+                >
+                  <img src={mailIcon} alt="Mail" />
+                </a>
+                <a
+                  href={`http://www.linkedin.com/shareArticle?url=${sharingUrl}&title=${sharingText}`}
+                  onClick={shareToLinkedIn}
+                >
+                  <img src={linkedInIcon} alt="LinkedIn" />
+                </a>
+              </Socials>
             </SocialContainer>
           </Footer>
         </>
