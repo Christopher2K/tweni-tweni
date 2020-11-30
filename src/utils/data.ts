@@ -24,6 +24,7 @@ export function fromPrismicDataToInxpirationModel(
   const { id, data } = doc
 
   return {
+    enabled: data.enabled,
     id,
     title: data.title[0].text,
     artist: data.artist,

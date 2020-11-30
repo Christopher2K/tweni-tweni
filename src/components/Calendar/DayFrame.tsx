@@ -294,7 +294,9 @@ export const DayFrame: FC<DayFrameProps> = ({
   // Callback
   const onDayClick = useCallback(
     function onDayClick() {
-      onDayClicked(dayNumber)
+      if (inspiration.enabled) {
+        onDayClicked(dayNumber)
+      }
     },
     [onDayClicked, dayNumber],
   )
@@ -336,14 +338,14 @@ export const DayFrame: FC<DayFrameProps> = ({
         <FixedSizeContainer {...styleProps}>
           <Top>
             <Day {...styleProps}>{dayNumberText}</Day>
-            {mobileScreen && (
+            {mobileScreen && inspiration.enabled && (
               <Carousel.Dots
                 activeImageIndex={activeImageIndex}
                 carouselLength={inspiration.carousel.length}
               />
             )}
           </Top>
-          {mobileScreen && (
+          {mobileScreen && inspiration.enabled && (
             <Carousel.Container
               onNextClicked={showNextImage}
               onPrevClicked={showPreviousImage}
@@ -352,15 +354,21 @@ export const DayFrame: FC<DayFrameProps> = ({
             />
           )}
           <Bottom {...styleProps}>
-            <Metadata>
-              <h1>{inspiration.title}</h1>
-              <p>{inspiration.subject}</p>
-              <p>{inspiration.categories.join(' | ')}</p>
-            </Metadata>
+            {inspiration.enabled ? (
+              <Metadata>
+                <h1>{inspiration.title}</h1>
+                <p>{inspiration.subject}</p>
+                <p>{inspiration.categories.join(' | ')}</p>
+              </Metadata>
+            ) : (
+              <Metadata>
+                <h1>Prochainement...</h1>
+              </Metadata>
+            )}
             {isActiveDay ? (
               <Hide onClick={onCloseClick} />
             ) : (
-              <Develop onClick={onDayClick} />
+              <>{inspiration.enabled && <Develop onClick={onDayClick} />}</>
             )}
           </Bottom>
           {isActiveDay && mobileScreen && (

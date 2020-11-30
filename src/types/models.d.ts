@@ -5,6 +5,7 @@ declare namespace Model {
   }
 
   interface Inspiration {
+    enabled: boolean
     id: string
     title: string
     artist: string
