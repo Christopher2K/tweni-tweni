@@ -32,5 +32,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.DEV_NETLIFY_SITE_ID }}
          with:
-          args: deploy --dir=build --prod --message "Deploy for $GITHUB_REF_NAME@GITHUB_SHA_SHORT $COMMIT_MSG"
+          args: deploy --dir=build --prod --message "Deploy for $GITHUB_REF_NAME $GITHUB_SHA_SHORT $COMMIT_MSG"
           secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
