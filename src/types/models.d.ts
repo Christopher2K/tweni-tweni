@@ -4,6 +4,13 @@ declare namespace Model {
     caption: string
   }
 
+  interface Genesis {
+    contact: string
+    mainText: string
+    team: string[]
+    credits: string[]
+  }
+
   interface Inspiration {
     enabled: boolean
     id: string

@@ -21,9 +21,11 @@ interface WebsiteData {
   mix?: Model.Mix[]
   inspirations?: Model.Inspiration[]
   legalNoticeData?: string
+  genesisData?: Model.Genesis
 
   getArticleBySlug: (id: string) => Promise<Model.Article>
   getLegalNoticeData: () => Promise<void>
+  getGenesisData: () => Promise<void>
 }
 
 const WebsiteDataContext = createContext<WebsiteData | undefined>(undefined)
@@ -43,6 +45,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
   const [inspirations, setInspirations] = useState<Model.Inspiration[]>()
   const [mix, setMix] = useState<Model.Mix[]>()
   const [legalNoticeData, setLegalNoticeData] = useState<string>()
+  const [genesisData, setGenesisData] = useState<Model.Genesis>()
 
   useEffect(() => {
     // fetch('/__mock__/fake_articles.json')
@@ -107,14 +110,34 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
     [prismic],
   )
 
-  const getLegalNoticeData = useCallback(function getLegalNoticeData() {
-    return prismic
-      .queryFirst(Prismic.Predicates.at('document.type', 'legal_notice'))
-      .then(doc => {
-        setLegalNoticeData(PrismicDOM.RichText.asHtml(doc.data.legal_notice))
-      })
-      .catch(console.error)
-  }, [])
+  const getLegalNoticeData = useCallback(
+    function getLegalNoticeData() {
+      return prismic
+        .queryFirst(Prismic.Predicates.at('document.type', 'legal_notice'))
+        .then(doc => {
+          setLegalNoticeData(PrismicDOM.RichText.asHtml(doc.data.legal_notice))
+        })
+        .catch(console.error)
+    },
+    [prismic],
+  )
+
+  const getGenesisData = useCallback(
+    function getGenesisData() {
+      return prismic
+        .queryFirst(Prismic.Predicates.at('document.type', 'genesis'))
+        .then(doc => {
+          setGenesisData({
+            contact: PrismicDOM.RichText.asHtml(doc.data.contact),
+            team: (doc.data.team as any[]).map(t => t.member),
+            mainText: PrismicDOM.RichText.asHtml(doc.data.main_text),
+            credits: (doc.data.credits as any[]).map(c => c.credit),
+          })
+        })
+        .catch(console.error)
+    },
+    [prismic],
+  )
 
   return (
     <WebsiteDataContext.Provider
@@ -123,8 +146,10 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
         mix,
         inspirations,
         legalNoticeData,
+        genesisData,
         getArticleBySlug,
         getLegalNoticeData,
+        getGenesisData,
       }}
     >
       {children}

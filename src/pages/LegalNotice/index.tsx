@@ -7,7 +7,7 @@ import { desktopStyle } from 'styles/responsive'
 
 const Root = styled(PageRoot)`
   box-sizing: border-box;
-  padding: 6rem ${props => props.theme.nav.padding.sides.mobile} 0;
+  padding: 4rem ${props => props.theme.nav.padding.sides.mobile} 0;
 
   ${props => desktopStyle`
     padding: 0 ${props.theme.nav.padding.sides.desktop} 0;
