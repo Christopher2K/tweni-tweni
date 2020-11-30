@@ -1,0 +1,36 @@
+name: Dev Workflow
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: Project dependencies
+        run: yarn install
+      - name: Lint code
+        run: yarn preflight
+      - name: Build code
+        run: yarn build
+  deploy:
+     needs: build
+     runs-on: ubuntu-latest
+     steps:
+       - name: Get commit message
+         run: export COMMIT_MSG=$(git log -1 --pretty=format:"%s"
+       - uses: FranzDiebold/github-env-vars-action@v1.3.0
+       - name: Netlify Deploy
+         uses: netlify/actions/cli@master       
+         env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.DEV_NETLIFY_SITE_ID }}
+         with:
+          args: deploy --dir=build --message "Deploy for $GITHUB_REF_NAME@GITHUB_SHA_SHORT $COMMIT_MSG"
+          secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
