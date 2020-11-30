@@ -57,7 +57,7 @@ const Informations = styled.div`
     font-size: 1rem;
     line-height: 14.5px;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    font-weight: 400;
 
     ${desktopStyle`
       line-height: 16.5px;

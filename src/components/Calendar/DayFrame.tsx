@@ -360,15 +360,11 @@ export const DayFrame: FC<DayFrameProps> = ({
             />
           )}
           <Bottom {...styleProps}>
-            {inspiration.enabled ? (
+            {inspiration.enabled && (
               <Metadata>
                 <h1>{inspiration.title}</h1>
                 <p>{inspiration.subject}</p>
                 <p>{inspiration.categories.join(' | ')}</p>
-              </Metadata>
-            ) : (
-              <Metadata>
-                <h1>Prochainement...</h1>
               </Metadata>
             )}
             {isActiveDay ? (

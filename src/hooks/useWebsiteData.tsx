@@ -78,7 +78,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
 
     prismic
       .query(Prismic.Predicates.at('document.type', 'inspiration'), {
-        orderings: '[my.inspirations.date]',
+        orderings: '[my.inspiration.date]',
         pageSize: 100,
       })
       .then(prismicDocument => {

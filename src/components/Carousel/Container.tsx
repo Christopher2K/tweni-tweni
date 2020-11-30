@@ -1,12 +1,13 @@
-import React, { FC } from 'react'
+/* eslint-disable @typescript-eslint/indent */
+import React, { FC, useCallback, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import type { SwipeableHandlers } from 'react-swipeable'
 
-import nextCursor from 'assets/icons/next.png'
-import prevCursor from 'assets/icons/prev.png'
 import { desktopMediaQuery, desktopStyle } from 'styles/responsive'
 import { useMediaQuery } from 'hooks/useMediaQuery'
+
+type CursorIndicatorText = 'NEXT' | 'PREV'
 
 const Carousel = styled.div`
   position: relative;
@@ -83,8 +84,9 @@ const Caption = styled.p`
   width: 80%;
 
   ${desktopStyle`
+    width: auto;
     flex-shrink: 0;
-    width: 100%;
+    width: auto;
   `}
 `
 
@@ -97,8 +99,15 @@ const CarouselButton = styled.button<{ side: 'left' | 'right' }>`
   outline: none;
   height: 100%;
   width: 50%;
-  cursor: url(${props => (props.side === 'left' ? prevCursor : nextCursor)}),
-    auto;
+`
+
+const CursorIndicator = styled.div`
+  position: fixed;
+  z-index: 1000;
+
+  user-select: none;
+  font-size: 1rem;
+  color: ${props => props.theme.colors.black};
 `
 
 interface ContainerProps {
@@ -116,7 +125,22 @@ export const Container: FC<ContainerProps> = ({
   onPrevClicked,
   swipeHandlers,
 }) => {
+  const cursorIndicatorRef = useRef<HTMLDivElement>(null)
   const { match: desktopScreen } = useMediaQuery(`(${desktopMediaQuery})`)
+  const [cursorIndicatorText, setCursorIndicatorText] = useState<
+    CursorIndicatorText
+  >()
+  const [coords, setCoords] = useState({ top: 0, left: 0 })
+
+  const updateIndicatorPosition = useCallback(function updateIndicatorPosition(
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) {
+    setCoords({
+      top: event.nativeEvent.clientY,
+      left: event.nativeEvent.clientX,
+    })
+  },
+  [])
 
   return (
     <Carousel>
@@ -131,8 +155,31 @@ export const Container: FC<ContainerProps> = ({
       </CarouselRow>
       {desktopScreen && (
         <>
-          <CarouselButton side="left" onClick={onPrevClicked} />
-          <CarouselButton side="right" onClick={onNextClicked} />
+          <CarouselButton
+            side="left"
+            onClick={onPrevClicked}
+            onMouseOver={() => setCursorIndicatorText('PREV')}
+            onMouseOut={() => setCursorIndicatorText(undefined)}
+            onMouseMove={updateIndicatorPosition}
+          />
+          <CarouselButton
+            side="right"
+            onClick={onNextClicked}
+            onMouseOver={() => setCursorIndicatorText('NEXT')}
+            onMouseOut={() => setCursorIndicatorText(undefined)}
+            onMouseMove={updateIndicatorPosition}
+          />
+          {cursorIndicatorText !== undefined && (
+            <CursorIndicator
+              ref={cursorIndicatorRef}
+              style={{
+                top: coords.top + 15,
+                left: coords.left + 15,
+              }}
+            >
+              {cursorIndicatorText}
+            </CursorIndicator>
+          )}
         </>
       )}
     </Carousel>
