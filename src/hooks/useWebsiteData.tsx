@@ -7,6 +7,7 @@ import React, {
   useCallback,
 } from 'react'
 import Prismic from 'prismic-javascript'
+import PrismicDOM from 'prismic-dom'
 
 import { usePrismic } from './usePrismic'
 import {
@@ -19,8 +20,10 @@ interface WebsiteData {
   articles?: Model.Article[]
   mix?: Model.Mix[]
   inspirations?: Model.Inspiration[]
+  legalNoticeData?: string
 
   getArticleBySlug: (id: string) => Promise<Model.Article>
+  getLegalNoticeData: () => Promise<void>
 }
 
 const WebsiteDataContext = createContext<WebsiteData | undefined>(undefined)
@@ -39,6 +42,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
   const [articles, setArticles] = useState<Model.Article[]>()
   const [inspirations, setInspirations] = useState<Model.Inspiration[]>()
   const [mix, setMix] = useState<Model.Mix[]>()
+  const [legalNoticeData, setLegalNoticeData] = useState<string>()
 
   useEffect(() => {
     // fetch('/__mock__/fake_articles.json')
@@ -94,11 +98,23 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
   const getArticleBySlug = useCallback(
     function getArticleBySlug(slug: string) {
       return prismic
-        .queryFirst(Prismic.Predicates.at('document.type', 'article'))
+        .queryFirst([
+          Prismic.Predicates.at('document.type', 'article'),
+          Prismic.Predicates.at('my.article.uid', slug),
+        ])
         .then(fromPrismicDataToArticleModel)
     },
     [prismic],
   )
+
+  const getLegalNoticeData = useCallback(function getLegalNoticeData() {
+    return prismic
+      .queryFirst(Prismic.Predicates.at('document.type', 'legal_notice'))
+      .then(doc => {
+        setLegalNoticeData(PrismicDOM.RichText.asHtml(doc.data.legal_notice))
+      })
+      .catch(console.error)
+  }, [])
 
   return (
     <WebsiteDataContext.Provider
@@ -106,7 +122,9 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
         articles,
         mix,
         inspirations,
+        legalNoticeData,
         getArticleBySlug,
+        getLegalNoticeData,
       }}
     >
       {children}

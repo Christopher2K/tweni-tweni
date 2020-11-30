@@ -87,7 +87,7 @@ export const HomeLink: FC = () => {
     desktopScreen ? theme.nav.logoWidth.desktop : theme.nav.logoWidth.mobile,
   )
   const maxLogoWidth =
-    (windowWidth > 1440 ? 1440 : windowWidth) - _navSidePaddingValue * 2
+    (windowWidth > 1920 ? 1920 : windowWidth) - _navSidePaddingValue * 2
   const activeScaleFactor = maxLogoWidth / currentLogoWidth
 
   return (

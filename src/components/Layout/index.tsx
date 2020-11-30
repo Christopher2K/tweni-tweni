@@ -38,7 +38,7 @@ export const Layout: FC = ({ children }) => {
   const { match: desktopScreen } = useMediaQuery(`(${desktopMediaQuery})`)
 
   // Computed
-  const currentContentWidth = windowWidth > 1440 ? 1440 : windowWidth
+  const currentContentWidth = windowWidth > 1920 ? 1920 : windowWidth
   const isHomepage = location.pathname === '/'
   const _navSidePaddingValue = toPixels(
     desktopScreen

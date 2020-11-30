@@ -265,7 +265,7 @@ export const DayFrame: FC<DayFrameProps> = ({
   })
 
   // Computed
-  const frameSize = mobileScreen ? width : Math.min(1440, width) / 4
+  const frameSize = mobileScreen ? width : Math.min(1920, width) / 4
   const aDayIsActive = activeDay !== -1
   const dayNumberText =
     dayNumber.toString().length === 1
