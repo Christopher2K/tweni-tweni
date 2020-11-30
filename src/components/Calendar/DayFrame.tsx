@@ -222,7 +222,7 @@ const Description = styled.p<StyleProps>`
 
   ${props => desktopStyle`
     padding: 0 2.8rem 0 2.8rem;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 20.2px;
     width: ${props.frameSize}px;
   `}
