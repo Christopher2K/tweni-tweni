@@ -9,6 +9,7 @@ export const global = css`
   ${reset}
 
   :root {
+    position: relative;
     font-family: ${theme.fonts.helvetica};
     font-size: ${theme.rootFontSize};
     color: ${theme.colors.black};
@@ -26,5 +27,13 @@ export const global = css`
   #root,
   body {
     min-height: 100vh;
+  }
+
+  a {
+    color: ${theme.colors.black};
+
+    &:active {
+      color: ${theme.colors.black};
+    }
   }
 `
