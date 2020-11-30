@@ -7,7 +7,7 @@ import React, {
   useCallback,
 } from 'react'
 import Prismic from 'prismic-javascript'
-import PrismicDOM from 'prismic-dom'
+import PrismicDOM, { RichText } from 'prismic-dom'
 
 import { usePrismic } from './usePrismic'
 import {
@@ -22,10 +22,13 @@ interface WebsiteData {
   inspirations?: Model.Inspiration[]
   legalNoticeData?: string
   genesisData?: Model.Genesis
+  inspirationHeaderText?: string
+  mixHeaderText?: string
 
   getArticleBySlug: (id: string) => Promise<Model.Article>
   getLegalNoticeData: () => Promise<void>
   getGenesisData: () => Promise<void>
+  getHeaderText: (text: 'inspiration' | 'mix') => void
 }
 
 const WebsiteDataContext = createContext<WebsiteData | undefined>(undefined)
@@ -46,6 +49,8 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
   const [mix, setMix] = useState<Model.Mix[]>()
   const [legalNoticeData, setLegalNoticeData] = useState<string>()
   const [genesisData, setGenesisData] = useState<Model.Genesis>()
+  const [mixHeaderText, setMixHeaderText] = useState<string>()
+  const [inspirationHeaderText, setInspirationHeaderText] = useState<string>()
 
   useEffect(() => {
     // fetch('/__mock__/fake_articles.json')
@@ -139,6 +144,23 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
     [prismic],
   )
 
+  const getHeaderText = useCallback(function getHeaderText(
+    page: 'inspiration' | 'mix',
+  ) {
+    prismic
+      .queryFirst(Prismic.Predicates.at('document.type', `${page}_page`))
+      .then(doc => {
+        const text = RichText.asText(doc.data.text)
+        if (page === 'inspiration') {
+          setInspirationHeaderText(text)
+        } else {
+          setMixHeaderText(text)
+        }
+      })
+      .catch(console.error)
+  },
+  [])
+
   return (
     <WebsiteDataContext.Provider
       value={{
@@ -147,7 +169,10 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
         inspirations,
         legalNoticeData,
         genesisData,
+        inspirationHeaderText,
+        mixHeaderText,
         getArticleBySlug,
+        getHeaderText,
         getLegalNoticeData,
         getGenesisData,
       }}
