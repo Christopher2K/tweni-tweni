@@ -44,7 +44,7 @@ export const Footer: FC = () => {
   return (
     <Root>
       <LegalNoticeLink to="/mentions-legales">Mentions légales</LegalNoticeLink>
-      <Copyright>All rights reserved© 2020</Copyright>
+      <Copyright>All rights reserved ©2020</Copyright>
     </Root>
   )
 }

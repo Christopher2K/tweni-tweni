@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
-const RootLink = styled.a``
+import { theme } from 'styles/theme'
 
 const MetaInfo = styled.p`
   color: ${props => props.theme.colors.violet};
@@ -35,6 +36,28 @@ const Thumbnail = styled.img`
   margin-bottom: 2rem;
 `
 
+const linkStyle = css`
+  --hover-color: ${theme.colors.violet};
+
+  &:hover {
+    ${AuthorName}, ${Title} {
+      color: var(--hover-color);
+    }
+
+    ${Thumbnail} {
+      border-bottom: 3px solid var(--hover-color);
+    }
+  }
+`
+
+const RootLink = styled.a`
+  ${linkStyle}
+`
+
+const StyledLink = styled(Link)`
+  ${linkStyle}
+`
+
 interface ThumbnailGridItemProps {
   metaInfo?: string
   image: string
@@ -54,7 +77,7 @@ export const ThumbnailGridItem: FC<ThumbnailGridItemProps> = ({
   url,
   appLink,
 }) => {
-  const Root = appLink ? Link : RootLink
+  const Root = appLink ? StyledLink : RootLink
   const linkProps = appLink ? { to: url } : { href: url, target: '_blank' }
 
   return (
