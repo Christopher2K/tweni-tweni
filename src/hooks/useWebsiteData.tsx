@@ -17,7 +17,7 @@ import {
 
 interface WebsiteData {
   articles?: Model.Article[]
-  mixs?: Model.Mix[]
+  mix?: Model.Mix[]
   inspirations?: Model.Inspiration[]
 
   getArticleBySlug: (id: string) => Promise<Model.Article>
@@ -38,7 +38,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
   const prismic = usePrismic()
   const [articles, setArticles] = useState<Model.Article[]>()
   const [inspirations, setInspirations] = useState<Model.Inspiration[]>()
-  const [mixs, setMixs] = useState<Model.Mix[]>()
+  const [mix, setMix] = useState<Model.Mix[]>()
 
   useEffect(() => {
     // fetch('/__mock__/fake_articles.json')
@@ -83,10 +83,10 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
         pageSize: 100,
       })
       .then(prismicDocument => {
-        const mixs: Model.Mix[] = prismicDocument.results.map(
+        const mix: Model.Mix[] = prismicDocument.results.map(
           fromPrismicDataToMixModel,
         )
-        setMixs(mixs)
+        setMix(mix)
       })
       .catch(console.error)
   }, [])
@@ -104,7 +104,7 @@ export const WebsiteDataContextProvider: FC = ({ children }) => {
     <WebsiteDataContext.Provider
       value={{
         articles,
-        mixs,
+        mix,
         inspirations,
         getArticleBySlug,
       }}

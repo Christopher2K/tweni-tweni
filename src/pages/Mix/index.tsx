@@ -6,8 +6,8 @@ import { ThumbnailGrid } from 'components/ThumbnailGrid'
 import { useWebsiteData } from 'hooks/useWebsiteData'
 import { ThumbnailGridItem } from 'components/ThumbnailGridItem'
 
-export const Mixs: FC = () => {
-  const { mixs } = useWebsiteData()
+export const Mix: FC = () => {
+  const { mix } = useWebsiteData()
 
   return (
     <PageRoot>
@@ -20,9 +20,9 @@ export const Mixs: FC = () => {
         fringilla vel, facilisis nec magna. Maecenas ut augue non augue pulvinar
         fringilla.
       </PageDescription>
-      {mixs !== undefined && (
+      {mix !== undefined && (
         <ThumbnailGrid>
-          {mixs.map(m => (
+          {mix.map(m => (
             <ThumbnailGridItem
               url={m.url}
               key={m.id}

@@ -7,7 +7,7 @@ import { Genesis } from 'pages/Genesis'
 import { Home } from 'pages/Home'
 import { Inspirations } from 'pages/Inspirations'
 import { LegalNotice } from 'pages/LegalNotice'
-import { Mixs } from 'pages/Mixs'
+import { Mix } from 'pages/Mix'
 import { NotFound } from 'pages/NotFound'
 import { Article } from 'pages/Article'
 import { WebsiteDataContextProvider } from 'hooks/useWebsiteData'
@@ -28,7 +28,7 @@ const Links: FC = () => {
       <Route path="/" exact component={Home} />
       <Route path="/genese" exact component={Genesis} />
       <Route path="/inspirations" exact component={Inspirations} />
-      <Route path="/mixs" exact component={Mixs} />
+      <Route path="/mix" exact component={Mix} />
       <Route path="/contact" exact component={Contact} />
       <Route path="/mentions-legales" exact component={LegalNotice} />
       <Route path="/article/:id" exact component={Article} />

@@ -37,9 +37,9 @@ export const Navbar: FC = () => {
     <Root>
       <Responsive.Desktop>
         <Item name="Génèse" to="/genese" anchor="left" />
-        <Item name="Nos Inspirations" to="/inspirations" anchor="left" />
+        <Item name="Nos inspirations" to="/inspirations" anchor="left" />
         <HomeLink />
-        <Item name="Nos mixs" to="/mixs" anchor="right" />
+        <Item name="Nos mix" to="/mix" anchor="right" />
         <Item name="Contact" to="/contact" anchor="right" />
       </Responsive.Desktop>
       <Responsive.Mobile>

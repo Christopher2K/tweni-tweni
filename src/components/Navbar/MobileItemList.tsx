@@ -123,10 +123,10 @@ export const MobileItemList: FC<MobileItemListProps> = ({
           activeClassName="active"
           onClick={onMenuButtonClicked}
         >
-          Nos Inspirations
+          Nos inspirations
         </Item>
-        <Item to="/mixs" activeClassName="active" onClick={onMenuButtonClicked}>
-          Nos Mixs
+        <Item to="/mix" activeClassName="active" onClick={onMenuButtonClicked}>
+          Nos mix
         </Item>
         <Item
           to="/genese"
