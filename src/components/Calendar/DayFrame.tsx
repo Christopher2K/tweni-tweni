@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useState } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import { useSwipeable } from 'react-swipeable'
 
 import { ReactComponent as DevelopIcon } from 'assets/icons/develop.svg'
 import { ReactComponent as DesktopHideIcon } from 'assets/icons/collapse.svg'
@@ -258,6 +259,10 @@ export const DayFrame: FC<DayFrameProps> = ({
   const { match: mobileScreen } = useMediaQuery(`(${mobileMediaQuery})`)
   const { width } = useWindowSize()
   const [activeImageIndex, setActiveImageIndex] = useState(0)
+  const handlers = useSwipeable({
+    onSwipedLeft: () => showNextImage(),
+    onSwipedRight: () => showPreviousImage(),
+  })
 
   // Computed
   const frameSize = mobileScreen ? width : Math.min(1440, width) / 4
@@ -311,7 +316,7 @@ export const DayFrame: FC<DayFrameProps> = ({
   const showNextImage = useCallback(function showNextImage() {
     setActiveImageIndex(currentImageIndex => {
       if (currentImageIndex === inspiration.carousel.length - 1) {
-        return 0
+        return currentImageIndex
       } else {
         return currentImageIndex + 1
       }
@@ -321,7 +326,7 @@ export const DayFrame: FC<DayFrameProps> = ({
   const showPreviousImage = useCallback(function showPreviousImage() {
     setActiveImageIndex(currentImageIndex => {
       if (currentImageIndex === 0) {
-        return inspiration.carousel.length - 1
+        return currentImageIndex
       } else {
         return currentImageIndex - 1
       }
@@ -351,6 +356,7 @@ export const DayFrame: FC<DayFrameProps> = ({
               onPrevClicked={showPreviousImage}
               activeImageIndex={activeImageIndex}
               images={inspiration.carousel}
+              swipeHandlers={handlers}
             />
           )}
           <Bottom {...styleProps}>

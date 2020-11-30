@@ -1,10 +1,12 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import type { SwipeableHandlers } from 'react-swipeable'
 
 import nextCursor from 'assets/icons/next.png'
 import prevCursor from 'assets/icons/prev.png'
-import { desktopStyle } from 'styles/responsive'
+import { desktopMediaQuery, desktopStyle } from 'styles/responsive'
+import { useMediaQuery } from 'hooks/useMediaQuery'
 
 const Carousel = styled.div`
   position: relative;
@@ -27,6 +29,7 @@ const CarouselRow = styled.div<{ activeImageIndex: number }>`
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
+  transition: 100ms transform linear;
   ${props => css`
     transform: translateX(
       calc(
@@ -103,6 +106,7 @@ interface ContainerProps {
   activeImageIndex: number
   onNextClicked: () => void
   onPrevClicked: () => void
+  swipeHandlers?: SwipeableHandlers
 }
 
 export const Container: FC<ContainerProps> = ({
@@ -110,10 +114,13 @@ export const Container: FC<ContainerProps> = ({
   activeImageIndex,
   onNextClicked,
   onPrevClicked,
+  swipeHandlers,
 }) => {
+  const { match: desktopScreen } = useMediaQuery(`(${desktopMediaQuery})`)
+
   return (
     <Carousel>
-      <CarouselRow activeImageIndex={activeImageIndex}>
+      <CarouselRow activeImageIndex={activeImageIndex} {...swipeHandlers}>
         <CarouselButton side="left" onClick={onPrevClicked} />
         {images.map((cp, index) => (
           <CarouselPhoto key={index}>
@@ -122,8 +129,12 @@ export const Container: FC<ContainerProps> = ({
           </CarouselPhoto>
         ))}
       </CarouselRow>
-      <CarouselButton side="left" onClick={onPrevClicked} />
-      <CarouselButton side="right" onClick={onNextClicked} />
+      {desktopScreen && (
+        <>
+          <CarouselButton side="left" onClick={onPrevClicked} />
+          <CarouselButton side="right" onClick={onNextClicked} />
+        </>
+      )}
     </Carousel>
   )
 }
