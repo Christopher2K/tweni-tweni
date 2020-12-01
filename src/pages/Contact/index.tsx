@@ -2,11 +2,13 @@ import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { desktopStyle } from 'styles/responsive'
 
+import contactImage from 'assets/images/contact.png'
+
 const Root = styled.div`
   position: absolute;
   top: 50%;
-  left: 0;
-  width: calc(100% - ${props => props.theme.nav.padding.sides.mobile});
+  left: ${props => props.theme.nav.padding.sides.mobile};
+  width: calc(100% - (${props => props.theme.nav.padding.sides.mobile} * 2));
   transform: translateY(-50%);
 
   display: flex;
@@ -15,19 +17,19 @@ const Root = styled.div`
   align-items: center;
 
   ${props => desktopStyle`
-    width: calc(100% - ${props.theme.nav.padding.sides.desktop});
+    left: ${props.theme.nav.padding.sides.desktop};
+    width: calc(100% - (${props.theme.nav.padding.sides.desktop} * 2));
   `}
 
-  p {
-    font-family: ${props => props.theme.fonts.sneak};
-    font-weight: 800;
-    font-size: 13rem;
-    line-height: 182px;
-    letter-spacing: -5px;
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+    max-height: 100%;
+    margin-bottom: 5rem;
 
     ${desktopStyle`
-      font-size: 38.8rem;
-      line-height: 500px;
+      margin-bottom: 10grem;
     `}
   }
 
@@ -45,7 +47,7 @@ const Root = styled.div`
 
 export const Contact: FC = () => (
   <Root>
-    <p>Hello !</p>
+    <img src={contactImage} alt="Hello!" />
     <a href="mailto:hello@twenitweni.fr">hello@twenitweni.fr</a>
     <a
       target="_blank"

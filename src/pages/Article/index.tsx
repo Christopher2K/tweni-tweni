@@ -261,9 +261,17 @@ export const Article: FC = () => {
             <meta property="og:url" content={clearSharingUrl} />
             <meta property="og:title" content={article.title} />
             <meta property="og:image" content={article.coverPhoto} />
-            <meta property="og:description" content="" />
-            <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:image" content={article.coverPhoto} />
+            <meta
+              property="og:description"
+              content={`Article par ${article.author}`}
+            />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content={article.title} />
+            <meta
+              name="twitter:description"
+              content={`Article par ${article.author}`}
+            />
+            <meta name="twitter:image" content={article.coverPhoto} />
           </Helmet>
           <CoverPhoto src={article.coverPhoto} alt={article.title} />
           <Title>{article.title}</Title>
