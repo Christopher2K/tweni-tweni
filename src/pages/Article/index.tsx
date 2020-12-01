@@ -52,6 +52,7 @@ const Title = styled.h1`
   line-height: 33px;
   text-transform: uppercase;
   margin-bottom: 2rem;
+  font-weight: 400;
 
   ${desktopStyle`
     padding: 0 8.3%;
@@ -117,6 +118,10 @@ const Content = styled.div`
       line-height: 30px;
     }
 
+    p.block-img {
+      margin: 0;
+    }
+
     p.image-left,
     p.image-right {
       margin-left: 0;
@@ -128,8 +133,13 @@ const Content = styled.div`
       margin-left: 50%;
     }
 
-    p.image-left + p {
-      margin: 0;
+    p.image-left + p,
+    p.block-img + p {
+      margin-left: 0;
+    }
+
+    p.image-right + p {
+      margin-left: 50%;
     }
   `}
 `
@@ -245,9 +255,11 @@ export const Article: FC = () => {
         <>
           <Helmet>
             <meta property="og:url" content={clearSharingUrl} />
-            <meta property="og:image" content={article.coverPhoto} />
             <meta property="og:title" content={article.title} />
+            <meta property="og:image" content={article.coverPhoto} />
             <meta property="og:description" content="" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:image" content={article.coverPhoto} />
           </Helmet>
           <CoverPhoto src={article.coverPhoto} alt={article.title} />
           <Title>{article.title}</Title>
