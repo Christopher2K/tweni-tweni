@@ -8,7 +8,6 @@ import { useParams } from 'react-router'
 import { desktopStyle } from 'styles/responsive'
 import linkedInIcon from 'assets/icons/linkedin.png'
 import mailIcon from 'assets/icons/mail.png'
-import facebookIcon from 'assets/icons/facebook.png'
 import twitterIcon from 'assets/icons/twitter.png'
 
 const littleSectionStyle = css`
@@ -237,19 +236,6 @@ export const Article: FC = () => {
   },
   [])
 
-  const shareToFacebook = useCallback(function shareToFacebook(
-    event: React.MouseEvent<HTMLAnchorElement>,
-  ) {
-    event.preventDefault()
-    const elm = event.currentTarget as HTMLAnchorElement
-    window.open(
-      elm.href,
-      'Partager depuis Tweni Tweni',
-      'left=20,top=20,width=600,height=700,toolbar=0,resizable=1',
-    )
-  },
-  [])
-
   return (
     <Root>
       <Helmet>
@@ -286,12 +272,6 @@ export const Article: FC = () => {
             <SocialContainer>
               <FooterHeading>partager</FooterHeading>
               <Socials>
-                <a
-                  href={`http://www.facebook.com/sharer.php?s=100&amp;p[title]=${sharingText}&amp;p[url]=${sharingUrl}&amp;p[images[0]=${article.thumbnailPhoto}`}
-                  onClick={shareToFacebook}
-                >
-                  <img src={facebookIcon} alt="Facebook" />
-                </a>
                 <a
                   href={`https://twitter.com/intent/tweet?url=${sharingUrl}&text=${sharingText}`}
                   onClick={shareToTwitter}
