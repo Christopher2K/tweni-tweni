@@ -96,6 +96,10 @@ const Content = styled.div`
     }
   }
 
+  a {
+    text-decoration: underline;
+  }
+
   p.block-img + p {
     font-size: 1.1rem;
     line-height: 11.25px;

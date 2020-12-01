@@ -140,8 +140,13 @@ export const MobileItemList: FC<MobileItemListProps> = ({
         <SocialLink href="mailto:hello@twenitweni.fr">
           hello@twenitweni.fr
         </SocialLink>
-        <SocialLink href="">Instagram</SocialLink>
-        <SocialLink href="">Twitter</SocialLink>
+        <SocialLink
+          href="https://www.instagram.com/tweni.tweni/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Instagram
+        </SocialLink>
       </Socials>
     </Root>
   )

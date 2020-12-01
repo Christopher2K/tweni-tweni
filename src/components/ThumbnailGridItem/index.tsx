@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 
 import { theme } from 'styles/theme'
+import { desktopStyle } from 'styles/responsive'
 
 const MetaInfo = styled.p`
   color: ${props => props.theme.colors.violet};
@@ -18,8 +19,11 @@ const Title = styled.h1`
   line-height: 27px;
   letter-spacing: 0.4px; /* Relatif à la taille de ma typo jugée à 20px sur les maquettes */
   font-weight: 400;
-
   width: 100%;
+
+  ${desktopStyle`
+    font-size: 2rem;
+  `}
 `
 
 const AuthorName = styled.p`
