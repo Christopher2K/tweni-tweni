@@ -1,6 +1,11 @@
 import { css } from '@emotion/react'
 
 export const reset = css`
+  html {
+    overflow-y: scroll;
+    overflow-y: overlay;
+  }
+
   html,
   body,
   div,

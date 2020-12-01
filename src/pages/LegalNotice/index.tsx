@@ -17,7 +17,6 @@ const Root = styled(PageRoot)`
 const Wrapper = styled.div`
   ${desktopStyle`
     width: 100%;
-    margin-left: 50%;
   `}
 `
 
@@ -26,6 +25,7 @@ const Content = styled.div`
 
   ${desktopStyle`
     width: 50%;
+    margin-left: 50%;
   `}
 
   p {

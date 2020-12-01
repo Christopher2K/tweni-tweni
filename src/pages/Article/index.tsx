@@ -258,7 +258,7 @@ export const Article: FC = () => {
             <meta property="og:title" content={article.title} />
             <meta property="og:image" content={article.coverPhoto} />
             <meta property="og:description" content="" />
-            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:card" content="summary_large_image" />
             <meta property="twitter:image" content={article.coverPhoto} />
           </Helmet>
           <CoverPhoto src={article.coverPhoto} alt={article.title} />
